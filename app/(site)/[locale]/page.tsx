@@ -1,8 +1,10 @@
 import { notFound } from 'next/navigation'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
-import About from '@/components/About'
+import Intro from '@/components/Intro'
 import Works from '@/components/Works'
+import Services from '@/components/Services'
+import Photography from '@/components/Photography'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 import RevealObserver from '@/components/RevealObserver'
@@ -36,8 +38,10 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       <Header locale={locale} dict={dict} />
       <main id="main">
         <Hero dict={dict} />
-        <About dict={dict} />
+        <Intro dict={dict} />
         <Works dict={dict} />
+        <Services dict={dict} />
+        <Photography dict={dict} />
         <Contact dict={dict} />
       </main>
       <Footer locale={locale} dict={dict} />

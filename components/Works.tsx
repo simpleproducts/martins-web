@@ -39,11 +39,12 @@ export default function Works({ dict }: { dict: Dictionary }) {
         <WorksCarousel dict={dict} />
       </div>
 
-      {/* Soft hand-off back to paper. */}
+      {/* Soft hand-off into the flat ink the rest of the page sits on. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none h-32 bg-gradient-to-b from-transparent to-paper lg:h-48"
+        className="pointer-events-none h-28 bg-gradient-to-b from-transparent to-ink lg:h-40"
       />
+
     </section>
   )
 }

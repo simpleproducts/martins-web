@@ -11,6 +11,7 @@ const de: Dictionary = {
     home: 'Start',
     about: 'Über mich',
     works: 'Arbeiten',
+    services: 'Leistungen',
     contact: 'Kontakt',
     openMenu: 'Menü öffnen',
     closeMenu: 'Menü schließen',
@@ -23,21 +24,25 @@ const de: Dictionary = {
       'Tusche, Gouache und ein sturer Strich Zinnoberrot. Zeichnungen für die halbe Sekunde, bevor sich der Stoff bewegt.',
     since: 'Tätig seit 2012',
   },
-  about: {
+  intro: {
     label: 'Über mich',
     heading: 'Eine Zeichnung ist eine schnell getroffene und langsam verteidigte Entscheidung.',
-    lede:
-      'Georg Martin zeichnet Mode so, wie man sie tatsächlich sieht: im Vorbeigehen, in Bewegung, im Auge halb fertig.',
     body: [
-      'Das Atelier arbeitet fast ausschließlich mit Tusche und Gouache auf schwerem Baumwollpapier. Jede Figur beginnt als eine einzige durchgehende Linie, in einem Atemzug gesetzt; alles danach ist Subtraktion. Was bleibt, sind Haltung, Gewicht, der Fall eines Saums — genau das, was eine Fotografie flach macht.',
-      'Die Aufträge reichen von Editorial-Strecken und Kampagnen-Keyframes bis zu Live-Zeichnung auf Schauen und privaten Porträts. Die Arbeiten erschienen europaweit im Druck, in drei Gruppenausstellungen und an einigen wenigen Wänden, die mehr zählen als all das.',
+      'Ich zeichne Mode so, wie man sie tatsächlich sieht: im Vorbeigehen, in Bewegung, im Auge halb fertig. Das Atelier arbeitet fast ausschließlich mit Tusche und Gouache auf schwerem Baumwollpapier, und jede Figur beginnt als eine einzige durchgehende Linie, in einem Atemzug gesetzt.',
+      'Alles nach dieser ersten Linie ist Abzug. Was bleibt, sind Haltung, Gewicht, der Fall eines Saums, der Winkel, den eine Schulter eine Sekunde lang hält und dann aufgibt. Genau die Teile, die eine Fotografie platt macht — und die Teile, für die ich bezahlt werde.',
+      'Ich habe aus der ersten Reihe der Schauen gearbeitet, aus Anproben um Mitternacht und an einem Berliner Tisch bei offenem Fenster. Vierzehn Jahre später hat sich die Methode kaum geändert: länger schauen, als man zeichnet, und dann schneller zeichnen, als man denkt.',
+      'Auftraggeber kommen für Editorial-Strecken, Kampagnen-Keyframes, Live-Zeichnung auf Veranstaltungen und private Porträts. Ein Teil der Arbeiten erscheint europaweit im Druck; ein anderer hängt in jemandes Flur, was mich deutlich weniger stört als erwartet.',
     ],
     facts: [
       { label: 'Ansässig in', value: 'Berlin, Deutschland' },
-      { label: 'Praxis', value: 'Tusche · Gouache · Digitales Finish' },
+      { label: 'Praxis', value: 'Tusche · Gouache · Digitale Ausarbeitung' },
       { label: 'Ausgewählte Kunden', value: 'Maison Verre, Atelier Noir, Kunsthalle Süd' },
       { label: 'Ausstellungen', value: 'Paris, Lissabon, Wien — 2021 / 2023 / 2025' },
     ],
+    galleryLabel: 'Atelier und Prozess',
+    prev: 'Vorheriges Bild',
+    next: 'Nächstes Bild',
+    counterOf: 'von',
   },
   works: {
     label: 'Ausgewählte Arbeiten',
@@ -85,18 +90,120 @@ const de: Dictionary = {
     prev: 'Vorherige Arbeit',
     next: 'Nächste Arbeit',
   },
+  services: {
+    label: 'Leistungen',
+    heading: 'Vier Arten, mich einzuspannen.',
+    hint: 'Leistung wählen',
+    items: {
+      live: {
+        title: 'Live-Illustration',
+        lede: 'Im Raum gezeichnet, vor den Menschen, für die gezeichnet wird.',
+        body: [
+          'Ich baue einen Tisch auf, ein Tuschefass und einen Stapel Baumwollpapier, und zeichne Ihre Gäste, während der Abend läuft. Jedes Porträt dauert drei bis fünf Minuten und geht mit der gezeichneten Person mit — keine Warteschlange, kein Drucker, kein Bildschirm zwischen Gast und Zeichnung.',
+          'Das funktioniert bei Store-Eröffnungen, Launches, Hochzeiten und Pressetagen. Ich bringe alles mit, auf Wunsch auch den Tisch, und kann stehend in einer Ecke oder sitzend auf einem Podest mitten im Raum arbeiten. Die Tusche trocknet in unter einer Minute; jeder Gast hält sein Blatt selbst.',
+        ],
+        meta: [
+          { label: 'Übliche Dauer', value: '2–4 Stunden, 25–45 Porträts' },
+          { label: 'Enthalten', value: 'Material, Anfahrt in Berlin, digitale Scans' },
+        ],
+      },
+      events: {
+        title: 'Veranstaltungen',
+        lede: 'Eine Schau, eine Saison, ein voller Raum — in Tusche berichtet.',
+        body: [
+          'Schauen, Preview-Abende, Dinner und Messen, begleitet wie von einem Chronisten: Ich sehe mir das Ganze an und komme mit den acht Zeichnungen zurück, die es tragen. Die Lieferung kann noch am selben Abend für Social erfolgen oder in der Woche darauf im Atelier ausgearbeitet werden.',
+          'Für Fashion Weeks arbeite ich als wandernde Hand — backstage bei den Anproben, im Saal während der Schau, danach im Atelier für die fertigen Blätter. Redaktionen nutzen meist die schnelle Serie am Tag selbst und die langsame für das Saisonbuch.',
+        ],
+        meta: [
+          { label: 'Lieferzeit', value: 'Schnelle Serie am selben Abend · Finals in 5 Tagen' },
+          { label: 'Anfahrt', value: 'Europaweit, ab Berlin' },
+        ],
+        process: {
+          heading: 'So läuft die Buchung ab',
+          lede:
+            'Jede Veranstaltung ist anders, deshalb beginnt der Ablauf damit, genau zu bestimmen, was Sie brauchen. Von der Art der Veranstaltung über die Zahl der Gäste bis zu Illustrationen und Material wird alles vor dem Termin festgelegt.',
+          steps: [
+            {
+              title: 'Erzählen Sie mir von Ihrer Veranstaltung',
+              body:
+                'Beginnen Sie mit dem Wesentlichen: Datum, Ort und Art der Veranstaltung. Sagen Sie mir, ob es eine private Feier, eine öffentliche Veranstaltung, ein Firmenevent, eine Hochzeit, eine Feier, eine Markenaktivierung oder etwas anderes ist.',
+            },
+            {
+              title: 'Wir definieren das Projekt',
+              body:
+                'Gemeinsam legen wir fest, wie das Illustrationserlebnis aussieht: Zahl der Gäste, geschätzte Anzahl der Illustrationen, deren Art, das benötigte Material und ob die Arbeiten live vor Ort entstehen oder danach geliefert werden.',
+            },
+            {
+              title: 'Sie bestätigen das Angebot',
+              body:
+                'Sind alle Details geklärt, erhalten Sie ein individuelles Angebot nach Umfang der Veranstaltung: vereinbarte Anzahl der Illustrationen, Material, Zeitplan, Logistik und Preis. Sobald beide Seiten zustimmen, ist die Buchung bestätigt.',
+            },
+            {
+              title: 'Die Veranstaltung',
+              body:
+                'Am vereinbarten Termin komme ich mit dem nötigen Material vorbereitet an und zeichne im abgesprochenen Format. Das Erlebnis ist auf Ihre Veranstaltung, Ihre Gäste und die gemeinsam geplanten Arbeiten zugeschnitten.',
+            },
+          ],
+          groupsHeading: 'Private und öffentliche Veranstaltungen',
+          groups: [
+            {
+              title: 'Private Veranstaltungen',
+              body:
+                'Hochzeiten, Geburtstage, Dinner, Feiern, private Partys und andere persönliche Anlässe.',
+            },
+            {
+              title: 'Öffentliche und Marken-Events',
+              body:
+                'Firmenevents, Festivals, Ausstellungen, Launches, Markenaktivierungen und andere öffentliche Formate.',
+            },
+          ],
+        },
+      },
+      prints: {
+        title: 'Drucke',
+        lede: 'Archivfeste Editionen der Zeichnungen, ordentlich gemacht.',
+        body: [
+          'Ausgewählte Arbeiten erscheinen als kleine Editionen auf 310-g-Baumwollpapier, in Berlin als Giclée gedruckt, von Hand signiert und nummeriert. Die Auflage liegt bei fünfundzwanzig; ist eine Auflage geschlossen, bleibt sie geschlossen, und die Platte wird stillgelegt.',
+          'Die Formate reichen von A3 bis 100 × 140 cm, ungerahmt oder gerahmt in Eiche oder geschwärzter Esche. Versand gerollt in der Hülse oder flach zwischen Karton, versichert, in der Regel innerhalb einer Woche nach Bestellung.',
+        ],
+        meta: [
+          { label: 'Auflage', value: '25 pro Arbeit, signiert und nummeriert' },
+          { label: 'Papier', value: '310 g Baumwollpapier, Archivtinten' },
+        ],
+      },
+      commissions: {
+        title: 'Individuelle Aufträge',
+        lede: 'Eine Zeichnung, aus einem Grund gemacht, mit Ihnen im Raum.',
+        body: [
+          'Private Porträts, Geschenke, Kleidungsstücke, die festgehalten werden sollen, ein Kampagnen-Keyframe, der vor dem Shooting existieren muss. Wir beginnen mit einem Gespräch und zwei, drei Skizzen, dann zeichne ich — meist zweimal, weil die zweite die ist, die trägt.',
+          'Sie sehen die Arbeit im Linienstadium und noch einmal, bevor die Farbe kommt; fertig ist nichts, bevor Sie es sagen. Originale werden gerahmt oder flach geliefert; Scans liegen der Datei bei, falls die Wand, für die sie gemacht ist, später den Besitzer wechselt.',
+        ],
+        meta: [
+          { label: 'Vorlauf', value: '3–6 Wochen, Express möglich' },
+          { label: 'Leistungen', value: 'Originalzeichnung · 600-dpi-Scan · Nutzungsrechte' },
+        ],
+      },
+    },
+  },
+  photography: {
+    label: 'Fotografie',
+    imageAlt: 'Fotografie aus dem Atelierarchiv',
+    prev: 'Vorherige Fotografie',
+    next: 'Nächste Fotografie',
+    goTo: 'Zur Fotografie',
+  },
   contact: {
     label: 'Kontakt',
     heading: 'Machen wir etwas, das einen Rahmen verdient.',
-    lede:
-      'Aufträge, Editorial-Arbeiten, Live-Zeichnung und Druckanfragen. Antwort in der Regel innerhalb von zwei Werktagen.',
+    introLines: [
+      'Aufträge, Editorial-Arbeiten, Live-Zeichnung und Druckanfragen sind alle willkommen.',
+      'Antwort in der Regel innerhalb von zwei Werktagen — früher, wenn die Deadline es verlangt.',
+    ],
     studioLabel: 'Atelier',
     studioValue: 'Oranienstraße 00, 10999 Berlin',
     emailLabel: 'E-Mail',
     phoneLabel: 'Telefon',
     messageLabel: 'Nachricht',
-    messageCta: 'Nachricht schreiben',
-    closeForm: 'Schließen',
     socialsLabel: 'Anderswo',
     form: {
       name: 'Ihr Name',

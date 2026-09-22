@@ -14,6 +14,7 @@ const en = {
     home: 'Home',
     about: 'About',
     works: 'Works',
+    services: 'Services',
     contact: 'Contact',
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
@@ -26,14 +27,14 @@ const en = {
       'Ink, gouache and one stubborn stroke of vermilion. Drawings made for the half-second before a garment moves.',
     since: 'Working since 2012',
   },
-  about: {
-    label: 'About',
+  intro: {
+    label: 'About me',
     heading: 'A drawing is a decision made quickly and defended slowly.',
-    lede:
-      'Georg Martin draws fashion the way it is actually seen — at a glance, in motion, half-finished in the eye.',
     body: [
-      'The studio works almost entirely in ink and gouache on heavy cotton paper. Each figure begins as a single unbroken line laid down in one breath; everything after that is subtraction. What survives is posture, weight, the fall of a hem — the parts a photograph flattens.',
-      'Commissions run from editorial spreads and campaign keyframes to live drawing at shows and private portraits. Work has appeared in print across Europe, in three group exhibitions, and on a small number of walls that matter more than any of it.',
+      'I draw fashion the way it is actually seen — at a glance, in motion, half-finished in the eye. The studio works almost entirely in ink and gouache on heavy cotton paper, and every figure starts as one unbroken line laid down in a single breath.',
+      'Everything after that first line is subtraction. What survives is posture, weight, the fall of a hem, the angle a shoulder holds for a second and then gives up. Those are the parts a photograph flattens and the parts I am paid to keep.',
+      'I have worked from the front row of shows, from fitting rooms at midnight, and from a table in Berlin with the window open. Fourteen years in, the method has not changed much: watch longer than you draw, then draw faster than you think.',
+      'Clients come for editorial spreads, campaign keyframes, live drawing at events and private portraits. Some of the work ends up in print across Europe; some of it ends up on a wall in somebody’s hallway, which I mind rather less than I expected to.',
     ],
     facts: [
       { label: 'Based in', value: 'Berlin, Germany' },
@@ -41,6 +42,10 @@ const en = {
       { label: 'Selected clients', value: 'Maison Verre, Atelier Noir, Kunsthalle Süd' },
       { label: 'Exhibitions', value: 'Paris, Lisbon, Vienna — 2021 / 2023 / 2025' },
     ],
+    galleryLabel: 'Studio and process',
+    prev: 'Previous image',
+    next: 'Next image',
+    counterOf: 'of',
   },
   works: {
     label: 'Selected works',
@@ -88,18 +93,121 @@ const en = {
     prev: 'Previous piece',
     next: 'Next piece',
   },
+  services: {
+    label: 'Services',
+    heading: 'Four ways to put me to work.',
+    hint: 'Choose a service',
+    items: {
+      live: {
+        title: 'Live Drawing Illustration',
+        lede: 'Drawn in the room, in front of the people it is drawn for.',
+        body: [
+          'I set up a table, a pot of ink and a stack of cotton paper, and draw your guests as the evening runs. Each portrait takes three to five minutes and leaves with the person in it — no queue management, no printer, no screen between the guest and the drawing.',
+          'It works at store openings, launches, weddings and press days. I bring everything, including the table if you need one, and I can draw standing in a corner or seated on a plinth in the middle of the room. Ink dries in under a minute; guests hold their own.',
+        ],
+        meta: [
+          { label: 'Typical run', value: '2–4 hours, 25–45 portraits' },
+          { label: 'Includes', value: 'Materials, travel within Berlin, digital scans' },
+        ],
+      },
+      events: {
+        title: 'Events',
+        lede: 'A show, a season, a room full of people — reported in ink.',
+        body: [
+          'Runway shows, private views, dinners and fairs, covered the way a writer would cover them: I watch the whole thing and come back with the eight drawings that hold it. The work can be delivered the same night for social, or refined in the studio over the following week.',
+          'For fashion weeks I work as a roving hand — backstage during fittings, front of house during the show, and in the studio afterwards for the finished plates. Editorial teams tend to use the fast set on the day and the slow set for the season book.',
+        ],
+        meta: [
+          { label: 'Turnaround', value: 'Rough set same night · finals in 5 days' },
+          { label: 'Travel', value: 'Europe-wide, from Berlin' },
+        ],
+        process: {
+          heading: 'How the booking process works',
+          lede:
+            'Every event is different, so the process starts by defining exactly what you need. From the type of event to the number of guests, illustrations and materials, everything is agreed before the event takes place.',
+          steps: [
+            {
+              title: 'Tell me about your event',
+              body:
+                'Start by sharing the essential details: the date, the location and the type of event. Let me know whether it is a private event, a public event, a corporate event, a wedding, a celebration, a brand activation or something else.',
+            },
+            {
+              title: 'Define the project',
+              body:
+                'Together we determine what the illustration experience will look like: the number of guests, the estimated number of illustrations, the type of illustrations, the materials required, and whether the artwork is created live during the event or delivered afterwards.',
+            },
+            {
+              title: 'Confirm the proposal',
+              body:
+                'Once all the details are defined you receive a custom proposal based on the scope of the event. It covers the agreed number of illustrations, materials, timing, logistics and price. Once both sides agree, the booking is confirmed.',
+            },
+            {
+              title: 'The event',
+              body:
+                'On the agreed date I arrive prepared with the necessary materials and create the illustrations in the agreed format. The experience is built around your event, your guests and the type of artwork we have planned together.',
+            },
+          ],
+          groupsHeading: 'Private & public events',
+          groups: [
+            {
+              title: 'Private events',
+              body:
+                'Weddings, birthdays, dinners, celebrations, private parties and other personal gatherings.',
+            },
+            {
+              title: 'Public & brand events',
+              body:
+                'Corporate events, festivals, exhibitions, launches, brand activations and other public experiences.',
+            },
+          ],
+        },
+      },
+      prints: {
+        title: 'Prints',
+        lede: 'Archival editions of the drawings, made properly.',
+        body: [
+          'Selected pieces are released as small editions on 310 gsm cotton rag, giclée-printed in Berlin and signed and numbered by hand. Editions run to twenty-five; once a run closes it stays closed, and the plate is retired.',
+          'Sizes go from A3 up to 100 × 140 cm, with unframed and framed options in oak or blackened ash. Everything ships rolled in a tube or flat-packed behind board, insured, usually within a week of the order.',
+        ],
+        meta: [
+          { label: 'Edition', value: '25 per piece, signed and numbered' },
+          { label: 'Paper', value: '310 gsm cotton rag, archival inks' },
+        ],
+      },
+      commissions: {
+        title: 'Custom Commissions',
+        lede: 'One drawing, made for one reason, with you in the room for it.',
+        body: [
+          'Private portraits, gifts, garments you want recorded, a campaign keyframe that has to exist before the shoot does. We start with a conversation and two or three thumbnails, then I draw — usually twice, because the second one is the one that works.',
+          'You see the piece at the line stage and again before the colour goes down, and nothing is finished until you have said so. Originals are delivered framed or flat; scans come with the file, in case the wall it is made for changes hands later.',
+        ],
+        meta: [
+          { label: 'Lead time', value: '3–6 weeks, rush possible' },
+          { label: 'Deliverables', value: 'Original artwork · 600 dpi scan · usage rights' },
+        ],
+      },
+    },
+  },
+  photography: {
+    /** Never shown: the slideshow carries no visible text at all. */
+    label: 'Photography',
+    imageAlt: 'Photograph from the studio archive',
+    prev: 'Previous photograph',
+    next: 'Next photograph',
+    goTo: 'Go to photograph',
+  },
   contact: {
     label: 'Contact',
     heading: 'Let’s make something worth framing.',
-    lede:
-      'Commissions, editorial assignments, live drawing and print enquiries. Replies usually land within two working days.',
+    introLines: [
+      'Commissions, editorial assignments, live drawing and print enquiries are all welcome.',
+      'Replies usually land within two working days — sooner if the deadline says so.',
+    ],
     studioLabel: 'Studio',
     studioValue: 'Oranienstraße 00, 10999 Berlin',
     emailLabel: 'Email',
     phoneLabel: 'Phone',
     messageLabel: 'Message',
-    messageCta: 'Write a message',
-    closeForm: 'Close',
     socialsLabel: 'Elsewhere',
     form: {
       name: 'Your name',

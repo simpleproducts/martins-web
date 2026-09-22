@@ -41,7 +41,7 @@
 --------------------------------------------------------------------------- */
 @layer base {
   :root {
-    color-scheme: light;
+    color-scheme: dark;
     --header-h: 4.5rem;
   }
 
@@ -63,8 +63,9 @@
   }
 
   body {
-    background-color: var(--color-paper);
-    color: var(--color-ink);
+    /* Ink is the dominant ground: only the closing contact block is paper. */
+    background-color: var(--color-ink);
+    color: var(--color-paper-light);
     font-family: var(--font-body);
     font-synthesis-weight: none;
     -webkit-font-smoothing: antialiased;
@@ -123,6 +124,15 @@
     background-image:
       radial-gradient(60rem 40rem at 15% 0%, rgba(84, 70, 56, 0.55), transparent 65%),
       radial-gradient(70rem 55rem at 85% 100%, rgba(60, 22, 20, 0.5), transparent 62%);
+  }
+
+  /* The photography slideshow sits on plain black so nothing competes with
+     the images — no stains, no warmth, no edges. */
+  .void-ground {
+    position: relative;
+    isolation: isolate;
+    background-color: #050403;
+    color: var(--color-paper-light);
   }
 
   /* Grain overlay. Applied to a ::after so it never intercepts pointer events. */

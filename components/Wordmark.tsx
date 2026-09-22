@@ -28,7 +28,7 @@ export default function Wordmark({
       </span>
       <span
         aria-hidden="true"
-        className={`rule my-1 w-full border-t ${compact ? 'my-[0.35em]' : 'my-2'}`}
+        className={`my-1 w-full border-t border-current opacity-30 ${compact ? 'my-[0.35em]' : 'my-2'}`}
       />
       <span
         className={`font-body uppercase ${

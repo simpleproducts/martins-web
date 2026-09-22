@@ -37,26 +37,44 @@ plus the redirect back).
 
 ## Sections
 
-`main`, `about`, `works`, `contact` — anchors are `#home`, `#about`, `#works`, `#contact`.
-Section ids live in `SECTIONS` (`lib/i18n.ts`); the header nav, mobile menu, footer nav
-and the scroll-spy all derive from that one list.
+The page runs hero → introduction → works → services → photography → contact, with
+anchors `#home`, `#about`, `#works`, `#services`, `#photography`, `#contact`.
+
+Nav ids live in `SECTIONS` (`lib/i18n.ts`); the header nav, mobile menu, footer nav and
+the scroll-spy all derive from that one list. `#photography` is deliberately **not** in
+it: that section carries no text of any kind, so it gets no label — it is a visual break
+rather than a destination.
+
+| Section | Component | Notes |
+| ------- | --------- | ----- |
+| Hero | `Hero.tsx` | Name and lede left, artwork bleeding off the right edge. |
+| Introduction | `Intro.tsx` + `IntroCarousel.tsx` | The long "about me" text, with a hand-navigated carousel beside it. It never advances on its own. |
+| Works | `Works.tsx` + `WorksCarousel.tsx` | The stack carousel of recent pieces. |
+| Services | `Services.tsx` | A vertical tablist: clicking a title swaps the description, its photographs and its facts in place. Events additionally carries a four-step booking walk-through (`services.items.events.process`). |
+| Photography | `Photography.tsx` | Full-bleed, wordless slideshow. Every label in it is for assistive technology and never renders. |
+| Contact | `Contact.tsx` + `ContactForm.tsx` | Square plate, two lines, the two direct channels, then the form inline. |
 
 ## What to replace before launch
 
 | What | Where |
 | ---- | ----- |
-| Artwork | `public/artwork/placeholder.jpg` — one image is reused for every piece. Add real scans and point `ARTWORK` / `PORTRAIT` in `lib/site.ts` at them. |
+| Artwork | `public/artwork/placeholder.jpg` — one image is reused everywhere. Add real files and point `ARTWORK`, `PORTRAIT`, `STUDIO_GALLERY`, each `SERVICES[].media` and `PHOTOGRAPHY` in `lib/site.ts` at them. |
 | Copy | `lib/dictionaries/*.ts` — every string, in all four languages. |
 | Name, email, phone, address, socials | `lib/site.ts` and `contact.studioValue` in each dictionary (the address shows in the footer). |
 | Production domain | `SITE.url` in `lib/site.ts` (drives canonical URLs, `hreflang` and Open Graph). |
 | Signature mark | `components/Signature.tsx` — hand-drawn placeholder; swap for a traced scan. |
 | Favicon | `public/favicon.svg` |
-| Contact form delivery | `deliver()` in `components/ContactForm.tsx` — currently a timed stub. Validation, error, sending and success states are already real. The form opens from the Message channel in Contact. |
+| Contact form delivery | `deliver()` in `components/ContactForm.tsx` — currently a timed stub. Validation, error, sending and success states are already real. The form sits inline at the end of the Contact section. |
 
 ## Design notes
 
-- **Palette and type scale**: `app/globals.css`, in the `@theme` block. Warm cotton paper,
-  printer's ink, one vermilion accent pulled from the artwork.
+- **Palette and type scale**: `app/globals.css`, in the `@theme` block. Printer's ink,
+  warm cotton paper, one vermilion accent pulled from the artwork.
+- **Dark by default**: ink is the page ground (`body`), white type sits on it and vermilion
+  carries the links, indicators, arrows and selected states. Contact and the footer are the
+  one light block, closing the page on paper. They are marked `data-ground="light"`, which
+  is what the header watches to flip its own colours — any new light section needs that
+  attribute or the header will stay inverse over it.
 - **Typeface**: Raleway (Google Fonts), loaded via `next/font` in the locale layout and used
   across its weight range — 200 at display sizes, 500 for the small-caps labels.
 - **Motion**: two page-level client components drive the scroll work. `RevealObserver`
@@ -64,11 +82,12 @@ and the scroll-spy all derive from that one list.
   `ParallaxObserver` moves anything carrying `data-parallax` (currently nothing does — it is
   kept for future use and early-returns when it finds no nodes). Both no-op under
   `prefers-reduced-motion`, so every section stays a server component.
-- **Interactive pieces**: only three components are client-side on their own —
-  `Header`, `WorksCarousel` (the stack carousel in Works) and `ContactDialog` (the native
-  `<dialog>` behind the Message channel, which mounts `ContactForm` on open).
-- **Texture**: `.paper-ground` / `.ink-ground` for the two grounds, `.grain` for the noise
-  overlay, `.plate` for a framed artwork.
+- **Interactive pieces**: the client components are `Header`, `WorksCarousel`,
+  `IntroCarousel`, `Services`, `Photography` and `ContactForm`. Everything else stays a
+  server component.
+- **Texture**: `.paper-ground` / `.ink-ground` for the two grounds, `.void-ground` for the
+  near-black the photography slideshow sits on, `.grain` for the noise overlay, `.plate` /
+  `.plate-inverse` for a framed artwork.
 
 ## Deployment
 

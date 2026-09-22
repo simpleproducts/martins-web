@@ -15,7 +15,7 @@ import {
 
 export default function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const [scrolled, setScrolled] = useState(false)
-  const [onDark, setOnDark] = useState(false)
+  const [onDark, setOnDark] = useState(true)
   const [active, setActive] = useState<SectionId>('home')
   const [menuOpen, setMenuOpen] = useState(false)
   const [langOpen, setLangOpen] = useState(false)
@@ -26,13 +26,17 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Diction
     home: dict.nav.home,
     about: dict.nav.about,
     works: dict.nav.works,
+    services: dict.nav.services,
     contact: dict.nav.contact,
   }
 
-  /* Scroll state: shrink the bar, invert it over the dark gallery, and track
-     which section owns the viewport. One rAF-throttled listener does all three. */
+  /* Scroll state: shrink the bar, flip it back to ink over the light blocks,
+     and track which section owns the viewport. One rAF-throttled listener does
+     all three. The page is dark nearly everywhere, so the header runs inverse
+     by default and only the sections marked data-ground="light" undo that. */
   useEffect(() => {
     let frame = 0
+    const lightGrounds = Array.from(document.querySelectorAll<HTMLElement>('[data-ground="light"]'))
 
     const measure = () => {
       frame = 0
@@ -40,11 +44,13 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Diction
 
       setScrolled(window.scrollY > 24)
 
-      const works = document.getElementById('works')
-      if (works) {
-        const rect = works.getBoundingClientRect()
-        setOnDark(rect.top <= headerPx * 0.6 && rect.bottom >= headerPx * 0.6)
-      }
+      const line = headerPx * 0.6
+      setOnDark(
+        !lightGrounds.some((el) => {
+          const rect = el.getBoundingClientRect()
+          return rect.top <= line && rect.bottom >= line
+        }),
+      )
 
       // The active section is the last one whose top has passed the header.
       let current: SectionId = 'home'

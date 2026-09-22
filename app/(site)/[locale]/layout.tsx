@@ -63,8 +63,8 @@ export async function generateMetadata({
 }
 
 export const viewport = {
-  themeColor: '#e7d6bb',
-  colorScheme: 'light' as const,
+  themeColor: '#17130f',
+  colorScheme: 'dark' as const,
 }
 
 export default async function LocaleLayout({
@@ -79,7 +79,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale satisfies Locale} className={raleway.variable}>
-      <body className="paper-ground grain min-h-dvh antialiased">{children}</body>
+      <body className="ink-ground grain min-h-dvh antialiased">{children}</body>
     </html>
   )
 }

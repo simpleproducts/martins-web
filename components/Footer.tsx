@@ -15,34 +15,35 @@ export default function Footer({ locale, dict }: { locale: Locale; dict: Diction
     home: dict.nav.home,
     about: dict.nav.about,
     works: dict.nav.works,
+    services: dict.nav.services,
     contact: dict.nav.contact,
   }
 
   return (
-    <footer className="ink-ground grain relative text-paper-light">
+    <footer data-ground="light" className="paper-ground grain relative text-ink">
       <div className="mx-auto max-w-[110rem] px-gutter py-16 lg:py-20">
         <div className="grid grid-cols-12 gap-y-12">
           <div className="col-span-12 lg:col-span-5">
             <a href={sectionHref(locale, 'home')} className="inline-block">
               <Wordmark withSignature />
             </a>
-            <p className="mt-6 max-w-[32ch] text-sm leading-relaxed font-light text-paper-light/60">
+            <p className="mt-6 max-w-[32ch] text-sm leading-relaxed font-light text-ink-soft">
               {dict.footer.tagline}
             </p>
-            <p className="mt-6 text-sm leading-relaxed font-light text-paper-light/60">
-              <span className="eyebrow block text-paper-light/55">{dict.contact.studioLabel}</span>
+            <p className="mt-6 text-sm leading-relaxed font-light text-ink-soft">
+              <span className="eyebrow block text-ink-faint">{dict.contact.studioLabel}</span>
               <span className="mt-2 block">{dict.contact.studioValue}</span>
             </p>
           </div>
 
           <nav aria-label="Footer" className="col-span-6 lg:col-span-3">
-            <p className="eyebrow text-paper-light/55">{dict.nav.home}</p>
+            <p className="eyebrow text-ink-faint">{dict.nav.home}</p>
             <ul className="mt-5 space-y-2.5">
               {SECTIONS.map((id) => (
                 <li key={id}>
                   <a
                     href={sectionHref(locale, id)}
-                    className="link-rule text-sm font-light text-paper-light/80"
+                    className="link-rule text-sm font-light text-ink-soft"
                   >
                     {labels[id]}
                   </a>
@@ -52,7 +53,7 @@ export default function Footer({ locale, dict }: { locale: Locale; dict: Diction
           </nav>
 
           <div className="col-span-6 lg:col-span-2">
-            <p className="eyebrow text-paper-light/55">{dict.contact.socialsLabel}</p>
+            <p className="eyebrow text-ink-faint">{dict.contact.socialsLabel}</p>
             <ul className="mt-5 space-y-2.5">
               {SITE.socials.map((social) => (
                 <li key={social.label}>
@@ -60,7 +61,7 @@ export default function Footer({ locale, dict }: { locale: Locale; dict: Diction
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="link-rule text-sm font-light text-paper-light/80"
+                    className="link-rule text-sm font-light text-ink-soft"
                   >
                     {social.label}
                   </a>
@@ -70,7 +71,7 @@ export default function Footer({ locale, dict }: { locale: Locale; dict: Diction
           </div>
 
           <div className="col-span-12 lg:col-span-2">
-            <p className="eyebrow text-paper-light/55">{dict.nav.language}</p>
+            <p className="eyebrow text-ink-faint">{dict.nav.language}</p>
             <ul className="mt-5 space-y-2.5">
               {LOCALES.map((l) => (
                 <li key={l}>
@@ -79,7 +80,7 @@ export default function Footer({ locale, dict }: { locale: Locale; dict: Diction
                     hrefLang={l}
                     aria-current={l === locale ? 'true' : undefined}
                     className={`link-rule text-sm font-light ${
-                      l === locale ? 'text-vermilion-light' : 'text-paper-light/80'
+                      l === locale ? 'text-vermilion-deep' : 'text-ink-soft'
                     }`}
                   >
                     {LOCALE_META[l].name}
@@ -90,7 +91,7 @@ export default function Footer({ locale, dict }: { locale: Locale; dict: Diction
           </div>
         </div>
 
-        <div className="rule-inverse mt-16 flex flex-col gap-4 border-t pt-6 text-xs tracking-wide text-paper-light/60 sm:flex-row sm:items-center sm:justify-between">
+        <div className="rule mt-16 flex flex-col gap-4 border-t pt-6 text-xs tracking-wide text-ink-soft sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {new Date().getFullYear()} {SITE.name}. {dict.footer.rights}
           </p>

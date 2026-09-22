@@ -41,5 +41,10 @@ export function sectionHref(locale: Locale, section: string): string {
   return `${base}/#${section}`
 }
 
-export const SECTIONS = ['home', 'about', 'works', 'contact'] as const
+/**
+ * Nav order. The photography slideshow is deliberately absent: it carries no
+ * text of any kind, so it gets no label — it is a visual break between
+ * Services and Contact rather than a destination.
+ */
+export const SECTIONS = ['home', 'about', 'works', 'services', 'contact'] as const
 export type SectionId = (typeof SECTIONS)[number]

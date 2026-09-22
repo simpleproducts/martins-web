@@ -11,6 +11,7 @@ const fr: Dictionary = {
     home: 'Accueil',
     about: 'À propos',
     works: 'Œuvres',
+    services: 'Services',
     contact: 'Contact',
     openMenu: 'Ouvrir le menu',
     closeMenu: 'Fermer le menu',
@@ -23,14 +24,14 @@ const fr: Dictionary = {
       'Encre, gouache et un trait têtu de vermillon. Des dessins faits pour la demi-seconde avant que le vêtement ne bouge.',
     since: 'En activité depuis 2012',
   },
-  about: {
+  intro: {
     label: 'À propos',
     heading: 'Un dessin est une décision prise vite et défendue lentement.',
-    lede:
-      'Georg Martin dessine la mode telle qu’on la voit vraiment : d’un coup d’œil, en mouvement, à moitié achevée dans l’œil.',
     body: [
-      'L’atelier travaille presque exclusivement à l’encre et à la gouache sur papier de coton épais. Chaque figure commence par une seule ligne continue posée d’un souffle ; tout ce qui suit est soustraction. Ce qui subsiste, c’est la posture, le poids, la tombée d’un ourlet — ce qu’une photographie aplatit.',
-      'Les commandes vont des doubles pages éditoriales aux images-clés de campagne, en passant par le dessin en direct lors des défilés et les portraits privés. Le travail a été publié dans toute l’Europe, montré dans trois expositions collectives, et accroché sur quelques murs qui comptent plus que tout le reste.',
+      'Je dessine la mode telle qu’on la voit vraiment : d’un coup d’œil, en mouvement, à moitié achevée dans l’œil. L’atelier travaille presque exclusivement à l’encre et à la gouache sur papier de coton épais, et chaque figure commence par une seule ligne continue posée d’un souffle.',
+      'Tout ce qui suit cette première ligne est soustraction. Ce qui subsiste, c’est la posture, le poids, la tombée d’un ourlet, l’angle qu’une épaule tient une seconde avant de céder. Ce sont les parties qu’une photographie aplatit et celles pour lesquelles on me paie.',
+      'J’ai travaillé depuis le premier rang des défilés, depuis des cabines d’essayage à minuit, et depuis une table berlinoise la fenêtre ouverte. Quatorze ans plus tard, la méthode a peu changé : regarder plus longtemps qu’on ne dessine, puis dessiner plus vite qu’on ne pense.',
+      'On vient me chercher pour des doubles pages éditoriales, des images-clés de campagne, du dessin en direct et des portraits privés. Une partie du travail finit imprimée dans toute l’Europe ; une autre finit dans le couloir de quelqu’un, ce qui me dérange bien moins que prévu.',
     ],
     facts: [
       { label: 'Basé à', value: 'Berlin, Allemagne' },
@@ -38,6 +39,10 @@ const fr: Dictionary = {
       { label: 'Clients choisis', value: 'Maison Verre, Atelier Noir, Kunsthalle Süd' },
       { label: 'Expositions', value: 'Paris, Lisbonne, Vienne — 2021 / 2023 / 2025' },
     ],
+    galleryLabel: 'Atelier et processus',
+    prev: 'Image précédente',
+    next: 'Image suivante',
+    counterOf: 'sur',
   },
   works: {
     label: 'Œuvres choisies',
@@ -85,18 +90,120 @@ const fr: Dictionary = {
     prev: 'Pièce précédente',
     next: 'Pièce suivante',
   },
+  services: {
+    label: 'Services',
+    heading: 'Quatre façons de me mettre au travail.',
+    hint: 'Choisissez un service',
+    items: {
+      live: {
+        title: 'Illustration en direct',
+        lede: 'Dessiné dans la salle, devant celles et ceux qu’on dessine.',
+        body: [
+          'J’installe une table, un pot d’encre et une pile de papier de coton, et je dessine vos invités au fil de la soirée. Chaque portrait prend trois à cinq minutes et repart avec la personne dessinée : pas de file à gérer, pas d’imprimante, aucun écran entre l’invité et le dessin.',
+          'Cela fonctionne aux ouvertures de boutique, aux lancements, aux mariages et aux journées presse. J’apporte tout, y compris la table si besoin, et je peux dessiner debout dans un coin ou assis sur une estrade au milieu de la salle. L’encre sèche en moins d’une minute ; chacun tient la sienne.',
+        ],
+        meta: [
+          { label: 'Durée type', value: '2–4 heures, 25–45 portraits' },
+          { label: 'Comprend', value: 'Matériel, déplacement dans Berlin, scans numériques' },
+        ],
+      },
+      events: {
+        title: 'Événements',
+        lede: 'Un défilé, une saison, une salle pleine — raconté à l’encre.',
+        body: [
+          'Défilés, vernissages, dîners et foires, couverts comme le ferait un chroniqueur : je regarde l’ensemble et je reviens avec les huit dessins qui le tiennent. La livraison peut se faire le soir même pour les réseaux, ou s’affiner à l’atelier la semaine suivante.',
+          'Pendant les fashion weeks, je travaille en main mobile : en coulisses pendant les essayages, en salle pendant le défilé, puis à l’atelier pour les planches finies. Les équipes éditoriales utilisent en général la série rapide le jour même et la série lente pour le livre de saison.',
+        ],
+        meta: [
+          { label: 'Délais', value: 'Série rapide le soir même · finales sous 5 jours' },
+          { label: 'Déplacements', value: 'Toute l’Europe, au départ de Berlin' },
+        ],
+        process: {
+          heading: 'Comment se passe la réservation',
+          lede:
+            'Chaque événement est différent : le processus commence donc par définir exactement ce dont vous avez besoin. Du type d’événement au nombre d’invités, d’illustrations et de matériaux, tout est convenu avant que l’événement n’ait lieu.',
+          steps: [
+            {
+              title: 'Parlez-moi de votre événement',
+              body:
+                'Commencez par l’essentiel : la date, le lieu et le type d’événement. Dites-moi s’il s’agit d’un événement privé, d’un événement public, d’un événement d’entreprise, d’un mariage, d’une célébration, d’une activation de marque ou d’autre chose.',
+            },
+            {
+              title: 'Nous définissons le projet',
+              body:
+                'Ensemble, nous déterminons à quoi ressemblera l’expérience d’illustration : le nombre d’invités, le nombre estimé d’illustrations, leur type, les matériaux nécessaires, et si les œuvres sont réalisées en direct pendant l’événement ou livrées après.',
+            },
+            {
+              title: 'Vous validez la proposition',
+              body:
+                'Une fois tous les détails définis, vous recevez une proposition sur mesure adaptée à l’ampleur de l’événement : nombre d’illustrations convenu, matériaux, horaires, logistique et prix. Dès accord des deux parties, la réservation est confirmée.',
+            },
+            {
+              title: 'Le jour J',
+              body:
+                'À la date convenue, j’arrive préparé avec le matériel nécessaire et je réalise les illustrations dans le format convenu. L’expérience est construite autour de votre événement, de vos invités et du type d’œuvres prévu ensemble.',
+            },
+          ],
+          groupsHeading: 'Événements privés et publics',
+          groups: [
+            {
+              title: 'Événements privés',
+              body:
+                'Mariages, anniversaires, dîners, célébrations, fêtes privées et autres réunions personnelles.',
+            },
+            {
+              title: 'Événements publics et de marque',
+              body:
+                'Événements d’entreprise, festivals, expositions, lancements, activations de marque et autres expériences publiques.',
+            },
+          ],
+        },
+      },
+      prints: {
+        title: 'Tirages',
+        lede: 'Des éditions d’archive des dessins, faites correctement.',
+        body: [
+          'Certaines pièces sortent en petites éditions sur coton 310 g, imprimées en giclée à Berlin, signées et numérotées à la main. Les éditions vont à vingt-cinq ; une fois close, une série le reste, et la planche est retirée.',
+          'Les formats vont du A3 au 100 × 140 cm, encadrés en chêne ou en frêne noirci, ou non encadrés. Tout part roulé en tube ou à plat entre cartons, assuré, en général dans la semaine suivant la commande.',
+        ],
+        meta: [
+          { label: 'Édition', value: '25 par pièce, signées et numérotées' },
+          { label: 'Papier', value: 'Coton 310 g, encres d’archive' },
+        ],
+      },
+      commissions: {
+        title: 'Commandes sur mesure',
+        lede: 'Un dessin, fait pour une raison, avec vous dans la pièce.',
+        body: [
+          'Portraits privés, cadeaux, vêtements que vous voulez consigner, une image-clé de campagne qui doit exister avant la prise de vue. On commence par une conversation et deux ou trois croquis, puis je dessine — souvent deux fois, car c’est le second qui tient.',
+          'Vous voyez la pièce au stade du trait, puis avant la couleur, et rien n’est fini tant que vous ne l’avez pas dit. Les originaux sont livrés encadrés ou à plat ; les scans accompagnent le fichier, au cas où le mur auquel il est destiné change de mains.',
+        ],
+        meta: [
+          { label: 'Délai', value: '3–6 semaines, urgences possibles' },
+          { label: 'Livrables', value: 'Œuvre originale · scan 600 ppp · droits d’usage' },
+        ],
+      },
+    },
+  },
+  photography: {
+    label: 'Photographie',
+    imageAlt: 'Photographie tirée des archives de l’atelier',
+    prev: 'Photographie précédente',
+    next: 'Photographie suivante',
+    goTo: 'Aller à la photographie',
+  },
   contact: {
     label: 'Contact',
     heading: 'Faisons quelque chose qui mérite un cadre.',
-    lede:
-      'Commandes, missions éditoriales, dessin en direct et demandes de tirages. Réponse généralement sous deux jours ouvrés.',
+    introLines: [
+      'Commandes, missions éditoriales, dessin en direct et demandes de tirages : tout est bienvenu.',
+      'Réponse généralement sous deux jours ouvrés — plus vite si l’échéance l’exige.',
+    ],
     studioLabel: 'Atelier',
     studioValue: 'Oranienstraße 00, 10999 Berlin',
     emailLabel: 'E-mail',
     phoneLabel: 'Téléphone',
     messageLabel: 'Message',
-    messageCta: 'Écrire un message',
-    closeForm: 'Fermer',
     socialsLabel: 'Ailleurs',
     form: {
       name: 'Votre nom',
