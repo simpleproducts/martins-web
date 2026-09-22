@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
-import Intro from '@/components/Intro'
 import Works from '@/components/Works'
 import Services from '@/components/Services'
 import Photography from '@/components/Photography'
@@ -38,7 +37,6 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       <Header locale={locale} dict={dict} />
       <main id="main">
         <Hero dict={dict} />
-        <Intro dict={dict} />
         <Works dict={dict} />
         <Services dict={dict} />
         <Photography dict={dict} />

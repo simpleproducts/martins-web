@@ -9,7 +9,6 @@ const es: Dictionary = {
   },
   nav: {
     home: 'Inicio',
-    about: 'Sobre mí',
     works: 'Obra',
     services: 'Servicios',
     contact: 'Contacto',
@@ -92,7 +91,7 @@ const es: Dictionary = {
   },
   services: {
     label: 'Servicios',
-    heading: 'Cuatro maneras de ponerme a trabajar.',
+    heading: 'Maneras de ponerme a trabajar.',
     hint: 'Elige un servicio',
     items: {
       live: {
@@ -183,14 +182,44 @@ const es: Dictionary = {
           { label: 'Entregables', value: 'Obra original · escaneo a 600 ppp · derechos de uso' },
         ],
       },
+      originals: {
+        title: 'Piezas originales',
+        lede: 'Los dibujos mismos, uno de cada, con precio y listos para salir.',
+        body: [
+          'Son originales: tinta y gouache sobre papel de algodón, firmados y sin marco salvo que pidas lo contrario. Lo que está listado es lo que existe — cuando una pieza se va, la fila se cierra y nada ocupa su lugar.',
+          'Los precios incluyen embalaje y envío asegurado dentro de Europa. El enmarcado en roble o fresno ennegrecido se puede preparar antes del envío, y todo lo que ves aquí puede verse en el estudio de Berlín con cita previa.',
+        ],
+        meta: [
+          { label: 'Estado', value: 'Firmado, sin marco, con certificado' },
+          { label: 'Envío', value: 'Embalado y asegurado, Europa incluida' },
+        ],
+        /** Emparejado por índice con ORIGINALS en lib/site.ts — mismo orden, misma longitud. */
+        pieces: [
+          { title: 'Estudio carmesí I', medium: 'Tinta y gouache, 70 × 100 cm' },
+          { title: 'Taller, tarde', medium: 'Tinta a pincel sobre papel tonal, 50 × 70 cm' },
+          { title: 'Nocturno en encaje', medium: 'Tinta y gouache, 60 × 80 cm' },
+          { title: 'Velo / Desvelo', medium: 'Gouache sobre papel, 60 × 80 cm' },
+          { title: 'Brasa', medium: 'Aguada de tinta y bermellón, 100 × 140 cm' },
+          { title: 'Estudio VII', medium: 'Tinta a pincel sobre algodón, 40 × 50 cm' },
+        ],
+      },
     },
   },
   photography: {
+    /** La sección no muestra título: solo estos pies de foto y la nota final. */
     label: 'Fotografía',
     imageAlt: 'Fotografía del archivo del estudio',
-    prev: 'Fotografía anterior',
-    next: 'Fotografía siguiente',
     goTo: 'Ir a la fotografía',
+    captions: [
+      'Pie de foto provisional — Berlín, invierno, 2024',
+      'Pie de foto provisional — backstage, segunda prueba',
+      'Pie de foto provisional — el estudio a las cuatro de la tarde',
+      'Pie de foto provisional — París, entre desfiles',
+      'Pie de foto provisional — el último fotograma del carrete',
+      'Pie de foto provisional — revelada esa misma semana, Kreuzberg',
+    ],
+    statement:
+      'Fotografío por la misma razón por la que dibujo: para quedarme con la media décima de segundo que el ojo ya había decidido guardar. La cámara solo es más rápida en admitirlo.',
   },
   contact: {
     label: 'Contacto',
@@ -199,8 +228,6 @@ const es: Dictionary = {
       'Encargos, trabajos editoriales, dibujo en directo y consultas sobre impresión: todo es bienvenido.',
       'Suelo responder en dos días laborables — antes si el plazo lo pide.',
     ],
-    studioLabel: 'Estudio',
-    studioValue: 'Oranienstraße 00, 10999 Berlín',
     emailLabel: 'Correo',
     phoneLabel: 'Teléfono',
     messageLabel: 'Mensaje',
@@ -229,6 +256,88 @@ const es: Dictionary = {
     rights: 'Todos los derechos reservados.',
     credit: 'Sitio provisional — imágenes y textos pendientes de sustituir.',
     backToTop: 'Volver arriba',
+    legalLabel: 'Legal',
+  },
+  legal: {
+    backToSite: 'Volver al sitio',
+    disclaimer: 'Texto provisional. Que lo revise un abogado antes de publicar el sitio.',
+    impressum: {
+      title: 'Aviso legal',
+      intro: 'Información según el § 5 de la TMG alemana.',
+      blocks: [
+        {
+          heading: 'Responsable del sitio',
+          lines: [
+            'Georg Martin — Illustration',
+            'Oranienstraße 00, 10999 Berlín, Alemania',
+            'studio@georgmartin.example',
+            '+49 30 0000 0000',
+          ],
+        },
+        {
+          heading: 'Responsable del contenido',
+          lines: ['Georg Martin, en la dirección indicada arriba (§ 18 (2) MStV).'],
+        },
+        {
+          heading: 'IVA',
+          lines: ['Número de identificación fiscal según el § 27 a de la UStG: DE000000000.'],
+        },
+        {
+          heading: 'Responsabilidad sobre los enlaces',
+          lines: [
+            'Este sitio enlaza a páginas externas cuyo contenido no está bajo mi control. La responsabilidad sobre ese contenido recae en quien opera cada página. Los enlaces se comprueban al añadirlos y se retiran en cuanto se conoce una infracción.',
+          ],
+        },
+        {
+          heading: 'Derechos de autor',
+          lines: [
+            'Todos los dibujos, fotografías y textos de este sitio son obra de Georg Martin salvo que se indique lo contrario. Cualquier reproducción, distribución o uso requiere permiso por escrito.',
+          ],
+        },
+        {
+          heading: 'Resolución de conflictos',
+          lines: [
+            'No estoy obligado ni dispuesto a participar en procedimientos de resolución de conflictos ante una junta arbitral de consumo.',
+          ],
+        },
+      ],
+    },
+    privacy: {
+      title: 'Política de privacidad',
+      intro: 'Este sitio no recoge datos sobre ti. Aquí nada te rastrea, te perfila ni te sigue a ninguna otra parte.',
+      blocks: [
+        {
+          heading: 'Sin analítica, sin cookies, sin rastreo',
+          lines: [
+            'No hay herramienta de analítica, ni gestor de etiquetas, ni píxel publicitario, ni script de rastreo en este sitio. No se instalan cookies y no se escribe nada en el almacenamiento de tu navegador.',
+          ],
+        },
+        {
+          heading: 'Sin peticiones a terceros',
+          lines: [
+            'Las tipografías y las imágenes se sirven desde este mismo sitio, así que abrir una página no informa a ninguna otra empresa de que has estado aquí. No hay contenido incrustado de redes sociales ni de plataformas de vídeo.',
+          ],
+        },
+        {
+          heading: 'Registros del servidor',
+          lines: [
+            'El proveedor de alojamiento puede conservar registros técnicos breves —dirección IP, hora, archivo solicitado— con el único fin de operar y proteger el servidor. No se vinculan aquí a ninguna persona ni se usan para nada más.',
+          ],
+        },
+        {
+          heading: 'Formulario de contacto y correo',
+          lines: [
+            'Si me escribes por el formulario o por correo, uso lo que envías únicamente para responderte. No se añade a ninguna lista, no se cede a nadie y no se usa para ningún otro fin; lo borro cuando la conversación termina.',
+          ],
+        },
+        {
+          heading: 'Tus derechos',
+          lines: [
+            'Como aquí no se recogen datos personales, normalmente no hay nada que solicitar, corregir ni borrar. Si me has escrito, puedes preguntarme en cualquier momento qué conservo y pedirme que lo elimine: studio@georgmartin.example.',
+          ],
+        },
+      ],
+    },
   },
 }
 

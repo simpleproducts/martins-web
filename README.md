@@ -37,22 +37,36 @@ plus the redirect back).
 
 ## Sections
 
-The page runs hero → introduction → works → services → photography → contact, with
-anchors `#home`, `#about`, `#works`, `#services`, `#photography`, `#contact`.
+The page runs hero/introduction → works → services → photography → contact, with anchors
+`#home`, `#works`, `#services`, `#photography`, `#contact`.
 
 Nav ids live in `SECTIONS` (`lib/i18n.ts`); the header nav, mobile menu, footer nav and
 the scroll-spy all derive from that one list. `#photography` is deliberately **not** in
-it: that section carries no text of any kind, so it gets no label — it is a visual break
-rather than a destination.
+it — it is a scroll-driven break rather than a destination — and the introduction has no
+entry of its own because it shares the hero.
 
 | Section | Component | Notes |
 | ------- | --------- | ----- |
-| Hero | `Hero.tsx` | Name and lede left, artwork bleeding off the right edge. |
-| Introduction | `Intro.tsx` + `IntroCarousel.tsx` | The long "about me" text, with a hand-navigated carousel beside it. It never advances on its own. |
+| Hero + introduction | `Hero.tsx` + `HeroCarousel.tsx` | One section: the name, the lede and the long "about me" writing run down the left half; the carousel owns the right half and stays pinned there while the writing scrolls. It never advances on its own. |
 | Works | `Works.tsx` + `WorksCarousel.tsx` | The stack carousel of recent pieces. |
-| Services | `Services.tsx` | A vertical tablist: clicking a title swaps the description, its photographs and its facts in place. Events additionally carries a four-step booking walk-through (`services.items.events.process`). |
-| Photography | `Photography.tsx` | Full-bleed, wordless slideshow. Every label in it is for assistive technology and never renders. |
+| Services | `Services.tsx` | A vertical tablist: clicking a title swaps the description, its photographs and its facts in place. Events carries a four-step booking walk-through (`services.items.events.process`); Original Pieces swaps the photographs for a priced masonry (`ORIGINALS` in `lib/site.ts`, titles from `services.items.originals.pieces`). |
+| Photography | `Photography.tsx` | The scroll takes over: the section is tall, the frame inside is pinned, and scrolling moves through the photographs. Each carries one small caption; the last frame is the photographer's statement rather than a picture. |
 | Contact | `Contact.tsx` + `ContactForm.tsx` | Square plate, two lines, the two direct channels, then the form inline. |
+
+## Legal pages
+
+`/impressum` and `/privacy` are their own routes (`app/(site)/[locale]/<slug>/page.tsx`),
+sharing `components/LegalPage.tsx` — a title, an intro line and a run of headed blocks,
+all from `legal` in the dictionaries. English lives at the root (`/impressum`), the other
+locales under their prefix (`/es/impressum`), which `LEGAL_PAGES` in `next.config.ts`
+sets up the same way as the home page. To add a third legal page: add the slug to
+`LEGAL_PAGES`, add a `legal.<slug>` entry to every dictionary, copy a route file, and add
+it to the footer's `legalPages` list.
+
+The privacy copy states that the site gathers nothing — no analytics, no cookies, no
+third-party requests. That is true of the code as it stands (`next/font` self-hosts the
+typeface at build time), so anything you add later that phones home needs the copy
+revisited.
 
 ## What to replace before launch
 
@@ -65,16 +79,19 @@ rather than a destination.
 | Signature mark | `components/Signature.tsx` — hand-drawn placeholder; swap for a traced scan. |
 | Favicon | `public/favicon.svg` |
 | Contact form delivery | `deliver()` in `components/ContactForm.tsx` — currently a timed stub. Validation, error, sending and success states are already real. The form sits inline at the end of the Contact section. |
+| Prices | `ORIGINALS` in `lib/site.ts`. Shown as written and never translated. |
+| Photo captions and the closing statement | `photography.captions` / `photography.statement` in each dictionary. The captions list must be the same length as `PHOTOGRAPHY`. |
+| Legal copy | `legal` in each dictionary — Impressum and privacy policy, both placeholder. The studio address now lives there rather than in the footer, and a lawyer should read both before launch. |
 
 ## Design notes
 
 - **Palette and type scale**: `app/globals.css`, in the `@theme` block. Printer's ink,
   warm cotton paper, one vermilion accent pulled from the artwork.
 - **Dark by default**: ink is the page ground (`body`), white type sits on it and vermilion
-  carries the links, indicators, arrows and selected states. Contact and the footer are the
-  one light block, closing the page on paper. They are marked `data-ground="light"`, which
-  is what the header watches to flip its own colours — any new light section needs that
-  attribute or the header will stay inverse over it.
+  carries the links, indicators, arrows and selected states. Contact is the one light block,
+  and the footer returns to ink under it. Light sections are marked `data-ground="light"`,
+  which is what the header watches to flip its own colours — any new light section needs
+  that attribute or the header will stay inverse over it.
 - **Typeface**: Raleway (Google Fonts), loaded via `next/font` in the locale layout and used
   across its weight range — 200 at display sizes, 500 for the small-caps labels.
 - **Motion**: two page-level client components drive the scroll work. `RevealObserver`
@@ -83,7 +100,7 @@ rather than a destination.
   kept for future use and early-returns when it finds no nodes). Both no-op under
   `prefers-reduced-motion`, so every section stays a server component.
 - **Interactive pieces**: the client components are `Header`, `WorksCarousel`,
-  `IntroCarousel`, `Services`, `Photography` and `ContactForm`. Everything else stays a
+  `HeroCarousel`, `Services`, `Photography` and `ContactForm`. Everything else stays a
   server component.
 - **Texture**: `.paper-ground` / `.ink-ground` for the two grounds, `.void-ground` for the
   near-black the photography slideshow sits on, `.grain` for the noise overlay, `.plate` /

@@ -12,7 +12,6 @@ const en = {
   },
   nav: {
     home: 'Home',
-    about: 'About',
     works: 'Works',
     services: 'Services',
     contact: 'Contact',
@@ -95,7 +94,7 @@ const en = {
   },
   services: {
     label: 'Services',
-    heading: 'Four ways to put me to work.',
+    heading: 'Ways to put me to work.',
     hint: 'Choose a service',
     items: {
       live: {
@@ -186,15 +185,44 @@ const en = {
           { label: 'Deliverables', value: 'Original artwork · 600 dpi scan · usage rights' },
         ],
       },
+      originals: {
+        title: 'Original Pieces',
+        lede: 'The drawings themselves, one of each, priced and ready to leave.',
+        body: [
+          'These are originals: ink and gouache on cotton paper, signed, unframed unless you ask otherwise. What is listed is what exists — when a piece goes, the row closes and nothing takes its place.',
+          'Prices include crating and insured shipping within Europe. Framing in oak or blackened ash can be arranged before dispatch, and anything you see here can be viewed at the studio in Berlin by appointment.',
+        ],
+        meta: [
+          { label: 'Condition', value: 'Signed, unframed, certificate included' },
+          { label: 'Shipping', value: 'Crated and insured, Europe included' },
+        ],
+        /** Index-matched to ORIGINALS in lib/site.ts — same order, same length. */
+        pieces: [
+          { title: 'Crimson Study I', medium: 'Ink and gouache, 70 × 100 cm' },
+          { title: 'Atelier, Late', medium: 'Brush ink on toned paper, 50 × 70 cm' },
+          { title: 'Nocturne in Lace', medium: 'Ink and gouache, 60 × 80 cm' },
+          { title: 'Veil / Unveil', medium: 'Gouache on paper, 60 × 80 cm' },
+          { title: 'Ember', medium: 'Ink wash and vermilion, 100 × 140 cm' },
+          { title: 'Study VII', medium: 'Brush ink on cotton, 40 × 50 cm' },
+        ],
+      },
     },
   },
   photography: {
-    /** Never shown: the slideshow carries no visible text at all. */
+    /** The section shows no heading — only these captions and the closing note. */
     label: 'Photography',
     imageAlt: 'Photograph from the studio archive',
-    prev: 'Previous photograph',
-    next: 'Next photograph',
     goTo: 'Go to photograph',
+    captions: [
+      'Placeholder caption — Berlin, winter, 2024',
+      'Placeholder caption — backstage, second fitting',
+      'Placeholder caption — the studio at four in the afternoon',
+      'Placeholder caption — Paris, between shows',
+      'Placeholder caption — the last frame of the roll',
+      'Placeholder caption — printed the same week, Kreuzberg',
+    ],
+    statement:
+      'I photograph for the same reason I draw: to keep the half-second the eye already decided was worth keeping. The camera is only faster at admitting it.',
   },
   contact: {
     label: 'Contact',
@@ -203,8 +231,6 @@ const en = {
       'Commissions, editorial assignments, live drawing and print enquiries are all welcome.',
       'Replies usually land within two working days — sooner if the deadline says so.',
     ],
-    studioLabel: 'Studio',
-    studioValue: 'Oranienstraße 00, 10999 Berlin',
     emailLabel: 'Email',
     phoneLabel: 'Phone',
     messageLabel: 'Message',
@@ -233,6 +259,88 @@ const en = {
     rights: 'All rights reserved.',
     credit: 'Placeholder site — imagery and copy to be replaced.',
     backToTop: 'Back to top',
+    legalLabel: 'Legal',
+  },
+  legal: {
+    backToSite: 'Back to the site',
+    disclaimer: 'Placeholder text. Have it checked by a lawyer before the site goes live.',
+    impressum: {
+      title: 'Impressum',
+      intro: 'Information according to § 5 TMG.',
+      blocks: [
+        {
+          heading: 'Responsible for this site',
+          lines: [
+            'Georg Martin — Illustration',
+            'Oranienstraße 00, 10999 Berlin, Germany',
+            'studio@georgmartin.example',
+            '+49 30 0000 0000',
+          ],
+        },
+        {
+          heading: 'Responsible for the content',
+          lines: ['Georg Martin, at the address above (§ 18 (2) MStV).'],
+        },
+        {
+          heading: 'VAT',
+          lines: ['VAT identification number under § 27 a UStG: DE000000000.'],
+        },
+        {
+          heading: 'Liability for links',
+          lines: [
+            'This site links to external sites whose content is outside my control. Responsibility for that content lies with the operator of the site in question. Links are checked when they are added and removed when a violation becomes known.',
+          ],
+        },
+        {
+          heading: 'Copyright',
+          lines: [
+            'All drawings, photographs and texts on this site are the work of Georg Martin unless stated otherwise. Reproduction, distribution or use of any kind requires written permission.',
+          ],
+        },
+        {
+          heading: 'Dispute resolution',
+          lines: [
+            'I am neither obliged nor willing to take part in dispute resolution proceedings before a consumer arbitration board.',
+          ],
+        },
+      ],
+    },
+    privacy: {
+      title: 'Privacy policy',
+      intro: 'This site does not gather data about you. Nothing here tracks, profiles or follows you anywhere else.',
+      blocks: [
+        {
+          heading: 'No analytics, no cookies, no tracking',
+          lines: [
+            'There is no analytics tool, no tag manager, no advertising pixel and no tracking script on this site. No cookies are set, and nothing is written to your browser storage.',
+          ],
+        },
+        {
+          heading: 'No third-party requests',
+          lines: [
+            'Fonts and images are served from this site itself, so opening a page does not tell any other company that you were here. No content is embedded from social networks or video platforms.',
+          ],
+        },
+        {
+          heading: 'Server logs',
+          lines: [
+            'The hosting provider may keep short-lived technical logs — IP address, time, requested file — for the sole purpose of operating and securing the server. These are not linked to any person here and are not used for anything else.',
+          ],
+        },
+        {
+          heading: 'Contact form and email',
+          lines: [
+            'If you write to me through the form or by email, I use what you send purely to answer you. It is not added to a mailing list, not passed to anyone and not used for any other purpose, and I delete it once the conversation is finished.',
+          ],
+        },
+        {
+          heading: 'Your rights',
+          lines: [
+            'Since no personal data is collected here, there is normally nothing to request, correct or erase. If you have written to me, you may ask at any time what I still hold and ask me to delete it — write to studio@georgmartin.example.',
+          ],
+        },
+      ],
+    },
   },
 }
 

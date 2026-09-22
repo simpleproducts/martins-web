@@ -56,6 +56,7 @@ export const SERVICES = [
   { id: 'events', media: [{ src: PLACEHOLDER, focus: '46% 30%' }, { src: PLACEHOLDER, focus: '58% 58%' }, { src: PLACEHOLDER, focus: '36% 16%' }] },
   { id: 'prints', media: [{ src: PLACEHOLDER, focus: '50% 42%' }, { src: PLACEHOLDER, focus: '62% 24%' }, { src: PLACEHOLDER, focus: '44% 70%' }] },
   { id: 'commissions', media: [{ src: PLACEHOLDER, focus: '48% 26%' }, { src: PLACEHOLDER, focus: '55% 52%' }, { src: PLACEHOLDER, focus: '38% 38%' }] },
+  { id: 'originals', media: [{ src: PLACEHOLDER, focus: '50% 30%' }, { src: PLACEHOLDER, focus: '42% 52%' }, { src: PLACEHOLDER, focus: '58% 18%' }] },
 ] as const
 
 export type ServiceId = (typeof SERVICES)[number]['id']
@@ -71,4 +72,19 @@ export const PHOTOGRAPHY = [
   { src: PLACEHOLDER, focus: '50% 70%' },
   { src: PLACEHOLDER, focus: '60% 20%' },
   { src: PLACEHOLDER, focus: '40% 55%' },
+] as const
+
+/**
+ * The originals for sale, laid out as a masonry. `aspect` drives the column
+ * rhythm, so vary it as the real pieces arrive; `price` is shown as written and
+ * is deliberately not translated. Order here is the order in the grid, and the
+ * dictionary's `services.items.originals.pieces` is matched to it by index.
+ */
+export const ORIGINALS = [
+  { id: 'crimson-i', src: PLACEHOLDER, focus: '50% 22%', aspect: '3 / 4', price: '€2,400' },
+  { id: 'atelier-late', src: PLACEHOLDER, focus: '38% 46%', aspect: '1 / 1', price: '€1,800' },
+  { id: 'nocturne', src: PLACEHOLDER, focus: '62% 34%', aspect: '4 / 5', price: '€3,200' },
+  { id: 'veil', src: PLACEHOLDER, focus: '44% 66%', aspect: '3 / 4', price: '€2,900' },
+  { id: 'ember', src: PLACEHOLDER, focus: '55% 12%', aspect: '1 / 1', price: '€1,500' },
+  { id: 'study-vii', src: PLACEHOLDER, focus: '48% 40%', aspect: '4 / 5', price: '€1,100' },
 ] as const

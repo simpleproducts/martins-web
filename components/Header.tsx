@@ -24,7 +24,6 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Diction
 
   const labels: Record<SectionId, string> = {
     home: dict.nav.home,
-    about: dict.nav.about,
     works: dict.nav.works,
     services: dict.nav.services,
     contact: dict.nav.contact,

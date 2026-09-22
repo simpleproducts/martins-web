@@ -32,7 +32,7 @@ export default function Contact({ dict }: { dict: Dictionary }) {
         <figure
           data-reveal
           style={reveal(80, '2.5rem')}
-          className="plate relative mx-auto mt-10 aspect-square w-full max-w-[30rem] lg:mt-14"
+          className="plate relative mx-auto mt-10 aspect-square w-full max-w-[30rem] shadow-none lg:mt-14"
         >
           <Image
             src={PORTRAIT.src}

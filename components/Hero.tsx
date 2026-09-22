@@ -1,26 +1,23 @@
-import Image from 'next/image'
 import BrushStroke from '@/components/BrushStroke'
+import HeroCarousel from '@/components/HeroCarousel'
 import { reveal } from '@/lib/reveal'
 import type { Dictionary } from '@/lib/i18n'
-import { PORTRAIT, SITE } from '@/lib/site'
+import { SITE } from '@/lib/site'
 
 const [FIRST, LAST] = SITE.name.split(' ')
 
 /**
- * An introduction, not a pitch: the name and a short note hold the left half,
- * the drawing owns the right half edge to edge. Deliberately free of buttons —
- * the nav is the only way out of here.
+ * Hero and introduction in one: the name, the lede and the long "about me"
+ * writing run down the left half, while the carousel holds the right half of
+ * the screen and stays pinned there for as long as the writing scrolls past it.
  */
 export default function Hero({ dict }: { dict: Dictionary }) {
   return (
-    <section
-      id="home"
-      className="relative grid min-h-[100svh] grid-cols-1 lg:min-h-dvh lg:grid-cols-2"
-    >
-      {/* Introduction: centred vertically in the left half, ranged left. */}
-      <div className="relative order-2 flex items-center overflow-hidden px-gutter pt-16 pb-24 lg:order-1 lg:min-h-dvh lg:pt-[var(--header-h)] lg:pb-0">
+    <section id="home" className="relative grid grid-cols-1 lg:grid-cols-2">
+      {/* The writing */}
+      <div className="relative order-2 overflow-hidden px-gutter pt-20 pb-24 lg:order-1 lg:pt-[calc(var(--header-h)+5rem)] lg:pb-32">
         <BrushStroke
-          className="animate-ink-drift pointer-events-none absolute -top-[10%] left-[-14%] h-[120%] w-[26vw] max-w-[18rem] opacity-20 mix-blend-screen"
+          className="animate-ink-drift pointer-events-none absolute -top-[4%] left-[-14%] h-[70%] w-[26vw] max-w-[18rem] opacity-20 mix-blend-screen"
           seed={11}
         />
 
@@ -39,7 +36,7 @@ export default function Hero({ dict }: { dict: Dictionary }) {
               <span
                 data-reveal="mask"
                 style={reveal(180)}
-                className="block text-[clamp(2.75rem,6vw,5.5rem)] leading-[0.92] font-extralight"
+                className="block text-[clamp(2.75rem,5.6vw,5rem)] leading-[0.92] font-extralight"
               >
                 {FIRST}
               </span>
@@ -48,7 +45,7 @@ export default function Hero({ dict }: { dict: Dictionary }) {
               <span
                 data-reveal="mask"
                 style={reveal(320)}
-                className="block text-[clamp(2.75rem,6vw,5.5rem)] leading-[0.92] font-extralight text-paper-light/55"
+                className="block text-[clamp(2.75rem,5.6vw,5rem)] leading-[0.92] font-extralight text-paper-light/55"
               >
                 {LAST}
               </span>
@@ -70,35 +67,56 @@ export default function Hero({ dict }: { dict: Dictionary }) {
             {dict.hero.lede}
           </p>
 
-          <p
-            data-reveal
-            style={reveal(640)}
-            className="eyebrow mt-10 flex items-center gap-4 text-paper-light/40"
-          >
+          <p data-reveal style={reveal(640)} className="eyebrow mt-8 text-paper-light/40">
             {dict.hero.since}
-            <span
-              aria-hidden="true"
-              className="animate-scroll-pulse hidden h-8 w-px bg-vermilion/70 lg:block"
-            />
           </p>
+
+          {/* The introduction, continuing in the same column. */}
+          <div className="rule-inverse mt-16 border-t pt-8 lg:mt-24">
+            <p data-reveal style={reveal(0)} className="eyebrow text-vermilion-light">
+              {dict.intro.label}
+            </p>
+
+            <h2
+              data-reveal
+              style={reveal(90)}
+              className="text-balance-pretty mt-6 font-display text-[clamp(1.6rem,2.6vw,2.4rem)] leading-[1.18] font-extralight tracking-[-0.02em] text-paper-light"
+            >
+              {dict.intro.heading}
+            </h2>
+
+            <div className="mt-8 space-y-6 text-[1.0625rem] leading-[1.8] font-light text-paper-light/70">
+              {dict.intro.body.map((paragraph, i) => (
+                <p key={i} data-reveal style={reveal(i * 80)} className="text-balance-pretty">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+
+            <dl className="rule-inverse mt-12 grid grid-cols-1 gap-px border-t sm:grid-cols-2">
+              {dict.intro.facts.map((fact, i) => (
+                <div
+                  key={fact.label}
+                  data-reveal
+                  style={reveal(100 + i * 70)}
+                  className="rule-inverse border-b py-5 sm:odd:pr-8 sm:even:-ml-px sm:even:border-l sm:even:pl-8"
+                >
+                  <dt className="eyebrow text-paper-light/45">{fact.label}</dt>
+                  <dd className="mt-2 font-display text-[1.05rem] leading-snug font-light text-paper-light">
+                    {fact.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </div>
       </div>
 
-      {/* Plate: bleeds to the top, right and bottom edges of the page. The
-          artwork is contained rather than cropped, so it is always shown whole. */}
-      <div className="relative order-1 h-[58svh] bg-ink-deep lg:order-2 lg:h-auto lg:min-h-dvh">
-        <Image
-          src={PORTRAIT.src}
-          alt={dict.meta.imageAlt}
-          fill
-          preload
-          sizes="(min-width: 1024px) 50vw, 100vw"
-          className="object-contain object-center"
-        />
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/60 via-transparent to-ink/70"
-        />
+      {/* The carousel: half the screen, pinned while the writing goes past. */}
+      <div className="relative order-1 h-[62svh] lg:order-2 lg:h-auto">
+        <div className="lg:sticky lg:top-0 lg:h-svh h-full">
+          <HeroCarousel dict={dict} />
+        </div>
       </div>
     </section>
   )

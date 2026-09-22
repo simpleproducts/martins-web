@@ -42,9 +42,14 @@ export function sectionHref(locale: Locale, section: string): string {
 }
 
 /**
- * Nav order. The photography slideshow is deliberately absent: it carries no
- * text of any kind, so it gets no label — it is a visual break between
- * Services and Contact rather than a destination.
+ * Nav order. The photography slideshow is deliberately absent — it is a
+ * scroll-driven break between Services and Contact rather than a destination —
+ * and the introduction has no entry of its own because it shares the hero.
  */
-export const SECTIONS = ['home', 'about', 'works', 'services', 'contact'] as const
+/** Public href for a standalone page (the legal pages) within a locale. */
+export function pageHref(locale: Locale, slug: string): string {
+  return locale === DEFAULT_LOCALE ? `/${slug}` : `/${locale}/${slug}`
+}
+
+export const SECTIONS = ['home', 'works', 'services', 'contact'] as const
 export type SectionId = (typeof SECTIONS)[number]

@@ -9,7 +9,6 @@ const de: Dictionary = {
   },
   nav: {
     home: 'Start',
-    about: 'Über mich',
     works: 'Arbeiten',
     services: 'Leistungen',
     contact: 'Kontakt',
@@ -92,7 +91,7 @@ const de: Dictionary = {
   },
   services: {
     label: 'Leistungen',
-    heading: 'Vier Arten, mich einzuspannen.',
+    heading: 'Arten, mich einzuspannen.',
     hint: 'Leistung wählen',
     items: {
       live: {
@@ -183,14 +182,44 @@ const de: Dictionary = {
           { label: 'Leistungen', value: 'Originalzeichnung · 600-dpi-Scan · Nutzungsrechte' },
         ],
       },
+      originals: {
+        title: 'Originale',
+        lede: 'Die Zeichnungen selbst, jede nur einmal, mit Preis und abholbereit.',
+        body: [
+          'Das sind Originale: Tusche und Gouache auf Baumwollpapier, signiert, ungerahmt, sofern Sie es nicht anders wünschen. Gelistet ist, was existiert — ist eine Arbeit weg, schließt die Zeile und nichts rückt nach.',
+          'Die Preise enthalten Verpackung und versicherten Versand innerhalb Europas. Rahmung in Eiche oder geschwärzter Esche lässt sich vor dem Versand vorbereiten, und alles hier kann nach Absprache im Berliner Atelier angesehen werden.',
+        ],
+        meta: [
+          { label: 'Zustand', value: 'Signiert, ungerahmt, mit Zertifikat' },
+          { label: 'Versand', value: 'Verpackt und versichert, Europa inklusive' },
+        ],
+        /** Per Index an ORIGINALS in lib/site.ts gekoppelt — gleiche Reihenfolge, gleiche Länge. */
+        pieces: [
+          { title: 'Karmesinstudie I', medium: 'Tusche und Gouache, 70 × 100 cm' },
+          { title: 'Atelier, spät', medium: 'Pinseltusche auf getöntem Papier, 50 × 70 cm' },
+          { title: 'Nocturne in Spitze', medium: 'Tusche und Gouache, 60 × 80 cm' },
+          { title: 'Schleier / Enthüllt', medium: 'Gouache auf Papier, 60 × 80 cm' },
+          { title: 'Glut', medium: 'Tuschelavierung und Zinnoberrot, 100 × 140 cm' },
+          { title: 'Studie VII', medium: 'Pinseltusche auf Baumwolle, 40 × 50 cm' },
+        ],
+      },
     },
   },
   photography: {
+    /** Der Abschnitt zeigt keine Überschrift — nur diese Bildunterschriften und den Schlusssatz. */
     label: 'Fotografie',
     imageAlt: 'Fotografie aus dem Atelierarchiv',
-    prev: 'Vorherige Fotografie',
-    next: 'Nächste Fotografie',
     goTo: 'Zur Fotografie',
+    captions: [
+      'Platzhalter-Bildunterschrift — Berlin, Winter, 2024',
+      'Platzhalter-Bildunterschrift — backstage, zweite Anprobe',
+      'Platzhalter-Bildunterschrift — das Atelier um vier Uhr nachmittags',
+      'Platzhalter-Bildunterschrift — Paris, zwischen zwei Schauen',
+      'Platzhalter-Bildunterschrift — das letzte Bild des Films',
+      'Platzhalter-Bildunterschrift — in derselben Woche abgezogen, Kreuzberg',
+    ],
+    statement:
+      'Ich fotografiere aus demselben Grund, aus dem ich zeichne: um die halbe Sekunde zu behalten, die das Auge längst für behaltenswert hielt. Die Kamera gibt es nur schneller zu.',
   },
   contact: {
     label: 'Kontakt',
@@ -199,8 +228,6 @@ const de: Dictionary = {
       'Aufträge, Editorial-Arbeiten, Live-Zeichnung und Druckanfragen sind alle willkommen.',
       'Antwort in der Regel innerhalb von zwei Werktagen — früher, wenn die Deadline es verlangt.',
     ],
-    studioLabel: 'Atelier',
-    studioValue: 'Oranienstraße 00, 10999 Berlin',
     emailLabel: 'E-Mail',
     phoneLabel: 'Telefon',
     messageLabel: 'Nachricht',
@@ -229,6 +256,88 @@ const de: Dictionary = {
     rights: 'Alle Rechte vorbehalten.',
     credit: 'Platzhalter-Website — Bilder und Texte werden ersetzt.',
     backToTop: 'Nach oben',
+    legalLabel: 'Rechtliches',
+  },
+  legal: {
+    backToSite: 'Zurück zur Seite',
+    disclaimer: 'Platzhaltertext. Vor dem Start bitte anwaltlich prüfen lassen.',
+    impressum: {
+      title: 'Impressum',
+      intro: 'Angaben gemäß § 5 TMG.',
+      blocks: [
+        {
+          heading: 'Verantwortlich für diese Seite',
+          lines: [
+            'Georg Martin — Illustration',
+            'Oranienstraße 00, 10999 Berlin, Deutschland',
+            'studio@georgmartin.example',
+            '+49 30 0000 0000',
+          ],
+        },
+        {
+          heading: 'Inhaltlich verantwortlich',
+          lines: ['Georg Martin, Anschrift wie oben (§ 18 Abs. 2 MStV).'],
+        },
+        {
+          heading: 'Umsatzsteuer',
+          lines: ['Umsatzsteuer-Identifikationsnummer gemäß § 27 a UStG: DE000000000.'],
+        },
+        {
+          heading: 'Haftung für Links',
+          lines: [
+            'Diese Seite verlinkt auf externe Seiten, auf deren Inhalte ich keinen Einfluss habe. Für diese Inhalte ist stets der jeweilige Anbieter verantwortlich. Links werden bei der Aufnahme geprüft und bei Bekanntwerden von Rechtsverstößen entfernt.',
+          ],
+        },
+        {
+          heading: 'Urheberrecht',
+          lines: [
+            'Alle Zeichnungen, Fotografien und Texte auf dieser Seite stammen, sofern nicht anders angegeben, von Georg Martin. Vervielfältigung, Verbreitung und jede Art der Verwertung bedürfen der schriftlichen Zustimmung.',
+          ],
+        },
+        {
+          heading: 'Streitbeilegung',
+          lines: [
+            'Ich bin weder verpflichtet noch bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.',
+          ],
+        },
+      ],
+    },
+    privacy: {
+      title: 'Datenschutzerklärung',
+      intro: 'Diese Seite erhebt keine Daten über Sie. Hier verfolgt, profiliert oder beobachtet Sie nichts.',
+      blocks: [
+        {
+          heading: 'Keine Analyse, keine Cookies, kein Tracking',
+          lines: [
+            'Auf dieser Seite laufen kein Analysewerkzeug, kein Tag-Manager, kein Werbepixel und kein Tracking-Skript. Es werden keine Cookies gesetzt, und in Ihrem Browserspeicher wird nichts abgelegt.',
+          ],
+        },
+        {
+          heading: 'Keine Anfragen an Dritte',
+          lines: [
+            'Schriften und Bilder liefert diese Seite selbst aus. Das Öffnen einer Seite verrät also keinem anderen Unternehmen, dass Sie hier waren. Es sind keine Inhalte aus sozialen Netzwerken oder von Videoplattformen eingebunden.',
+          ],
+        },
+        {
+          heading: 'Server-Logs',
+          lines: [
+            'Der Hoster kann kurzlebige technische Protokolle führen — IP-Adresse, Zeitpunkt, angefragte Datei — allein zum Betrieb und zur Absicherung des Servers. Sie werden hier keiner Person zugeordnet und zu nichts anderem verwendet.',
+          ],
+        },
+        {
+          heading: 'Kontaktformular und E-Mail',
+          lines: [
+            'Wenn Sie mir über das Formular oder per E-Mail schreiben, nutze ich Ihre Angaben ausschließlich, um Ihnen zu antworten. Sie kommen auf keine Verteilerliste, werden nicht weitergegeben und für nichts anderes verwendet; nach Abschluss der Korrespondenz lösche ich sie.',
+          ],
+        },
+        {
+          heading: 'Ihre Rechte',
+          lines: [
+            'Da hier keine personenbezogenen Daten erhoben werden, gibt es in der Regel nichts zu beauskunften, zu berichtigen oder zu löschen. Haben Sie mir geschrieben, können Sie jederzeit erfragen, was ich noch habe, und dessen Löschung verlangen: studio@georgmartin.example.',
+          ],
+        },
+      ],
+    },
   },
 }
 

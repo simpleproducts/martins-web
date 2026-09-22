@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useRef, useState } from 'react'
 import { reveal } from '@/lib/reveal'
 import type { Dictionary } from '@/lib/i18n'
-import { SERVICES } from '@/lib/site'
+import { ORIGINALS, SERVICES } from '@/lib/site'
 
 const pad = (n: number) => String(n).padStart(2, '0')
 
@@ -139,31 +139,36 @@ export default function Services({ dict }: { dict: Dictionary }) {
                 ))}
               </div>
 
-              {/* Relevant photographs, swapped with the copy. */}
-              <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4">
-                <figure className="plate plate-inverse relative col-span-2 aspect-[16/10] w-full">
-                  <Image
-                    src={service.media[0].src}
-                    alt={dict.meta.imageAlt}
-                    fill
-                    sizes="(min-width: 1024px) 46vw, 92vw"
-                    style={{ objectPosition: service.media[0].focus }}
-                    className="object-cover"
-                  />
-                </figure>
-                {service.media.slice(1).map((image, i) => (
-                  <figure key={i} className="plate plate-inverse relative aspect-[4/5] w-full">
+              {/* The originals are a priced grid; every other service is a
+                  set of photographs. */}
+              {service.id === 'originals' ? (
+                <OriginalsMasonry dict={dict} />
+              ) : (
+                <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4">
+                  <figure className="plate plate-inverse relative col-span-2 aspect-[16/10] w-full">
                     <Image
-                      src={image.src}
-                      alt=""
+                      src={service.media[0].src}
+                      alt={dict.meta.imageAlt}
                       fill
-                      sizes="(min-width: 1024px) 23vw, 46vw"
-                      style={{ objectPosition: image.focus }}
+                      sizes="(min-width: 1024px) 46vw, 92vw"
+                      style={{ objectPosition: service.media[0].focus }}
                       className="object-cover"
                     />
                   </figure>
-                ))}
-              </div>
+                  {service.media.slice(1).map((image, i) => (
+                    <figure key={i} className="plate plate-inverse relative aspect-[4/5] w-full">
+                      <Image
+                        src={image.src}
+                        alt=""
+                        fill
+                        sizes="(min-width: 1024px) 23vw, 46vw"
+                        style={{ objectPosition: image.focus }}
+                        className="object-cover"
+                      />
+                    </figure>
+                  ))}
+                </div>
+              )}
 
               {service.id === 'events' ? <EventsProcess dict={dict} /> : null}
 
@@ -236,6 +241,49 @@ function EventsProcess({ dict }: { dict: Dictionary }) {
           </div>
         ))}
       </div>
+    </div>
+  )
+}
+
+/**
+ * The originals for sale. A masonry rather than a grid, because the pieces are
+ * not the same shape and cropping them to match would be a lie about the work.
+ * Titles come from the dictionary, prices from `ORIGINALS` — they are never
+ * translated.
+ */
+function OriginalsMasonry({ dict }: { dict: Dictionary }) {
+  const pieces = dict.services.items.originals.pieces
+
+  return (
+    <div className="mt-10 gap-4 sm:columns-2">
+      {ORIGINALS.map((piece, i) => (
+        <figure key={piece.id} className="mb-8 break-inside-avoid">
+          <div
+            className="plate plate-inverse relative w-full"
+            style={{ aspectRatio: piece.aspect }}
+          >
+            <Image
+              src={piece.src}
+              alt={pieces[i].title}
+              fill
+              sizes="(min-width: 1024px) 23vw, (min-width: 640px) 46vw, 92vw"
+              style={{ objectPosition: piece.focus }}
+              className="object-cover"
+            />
+          </div>
+
+          <figcaption className="rule-inverse mt-3 flex items-baseline justify-between gap-4 border-b pb-3">
+            <span className="font-display text-[1.02rem] leading-snug font-light text-paper-light">
+              {pieces[i].title}
+            </span>
+            <span className="eyebrow shrink-0 text-vermilion-light">{piece.price}</span>
+          </figcaption>
+
+          <p className="mt-2 text-[0.85rem] leading-snug font-light text-paper-light/50">
+            {pieces[i].medium}
+          </p>
+        </figure>
+      ))}
     </div>
   )
 }

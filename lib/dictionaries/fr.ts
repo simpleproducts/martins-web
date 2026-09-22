@@ -9,7 +9,6 @@ const fr: Dictionary = {
   },
   nav: {
     home: 'Accueil',
-    about: 'À propos',
     works: 'Œuvres',
     services: 'Services',
     contact: 'Contact',
@@ -92,7 +91,7 @@ const fr: Dictionary = {
   },
   services: {
     label: 'Services',
-    heading: 'Quatre façons de me mettre au travail.',
+    heading: 'Des façons de me mettre au travail.',
     hint: 'Choisissez un service',
     items: {
       live: {
@@ -183,14 +182,44 @@ const fr: Dictionary = {
           { label: 'Livrables', value: 'Œuvre originale · scan 600 ppp · droits d’usage' },
         ],
       },
+      originals: {
+        title: 'Pièces originales',
+        lede: 'Les dessins eux-mêmes, un seul de chaque, avec leur prix, prêts à partir.',
+        body: [
+          'Ce sont des originaux : encre et gouache sur papier de coton, signés, non encadrés sauf demande contraire. Ce qui est listé est ce qui existe — quand une pièce part, la ligne se ferme et rien ne la remplace.',
+          'Les prix comprennent la caisse et l’expédition assurée en Europe. L’encadrement en chêne ou en frêne noirci peut être préparé avant l’envoi, et tout ce que vous voyez ici peut être vu à l’atelier berlinois sur rendez-vous.',
+        ],
+        meta: [
+          { label: 'État', value: 'Signé, non encadré, certificat inclus' },
+          { label: 'Expédition', value: 'En caisse et assurée, Europe comprise' },
+        ],
+        /** Apparié par index avec ORIGINALS dans lib/site.ts — même ordre, même longueur. */
+        pieces: [
+          { title: 'Étude cramoisie I', medium: 'Encre et gouache, 70 × 100 cm' },
+          { title: 'Atelier, tard', medium: 'Encre au pinceau sur papier teinté, 50 × 70 cm' },
+          { title: 'Nocturne en dentelle', medium: 'Encre et gouache, 60 × 80 cm' },
+          { title: 'Voile / Dévoilé', medium: 'Gouache sur papier, 60 × 80 cm' },
+          { title: 'Braise', medium: 'Lavis d’encre et vermillon, 100 × 140 cm' },
+          { title: 'Étude VII', medium: 'Encre au pinceau sur coton, 40 × 50 cm' },
+        ],
+      },
     },
   },
   photography: {
+    /** La section n’affiche aucun titre : seulement ces légendes et la note finale. */
     label: 'Photographie',
     imageAlt: 'Photographie tirée des archives de l’atelier',
-    prev: 'Photographie précédente',
-    next: 'Photographie suivante',
     goTo: 'Aller à la photographie',
+    captions: [
+      'Légende provisoire — Berlin, hiver, 2024',
+      'Légende provisoire — en coulisses, deuxième essayage',
+      'Légende provisoire — l’atelier à seize heures',
+      'Légende provisoire — Paris, entre deux défilés',
+      'Légende provisoire — la dernière image de la pellicule',
+      'Légende provisoire — tirée la même semaine, Kreuzberg',
+    ],
+    statement:
+      'Je photographie pour la même raison que je dessine : garder la demi-seconde que l’œil avait déjà jugée digne d’être gardée. L’appareil est seulement plus rapide à l’admettre.',
   },
   contact: {
     label: 'Contact',
@@ -199,8 +228,6 @@ const fr: Dictionary = {
       'Commandes, missions éditoriales, dessin en direct et demandes de tirages : tout est bienvenu.',
       'Réponse généralement sous deux jours ouvrés — plus vite si l’échéance l’exige.',
     ],
-    studioLabel: 'Atelier',
-    studioValue: 'Oranienstraße 00, 10999 Berlin',
     emailLabel: 'E-mail',
     phoneLabel: 'Téléphone',
     messageLabel: 'Message',
@@ -229,6 +256,88 @@ const fr: Dictionary = {
     rights: 'Tous droits réservés.',
     credit: 'Site provisoire — images et textes à remplacer.',
     backToTop: 'Haut de page',
+    legalLabel: 'Mentions',
+  },
+  legal: {
+    backToSite: 'Retour au site',
+    disclaimer: 'Texte provisoire. À faire vérifier par un juriste avant la mise en ligne.',
+    impressum: {
+      title: 'Mentions légales',
+      intro: 'Informations conformément au § 5 de la TMG allemande.',
+      blocks: [
+        {
+          heading: 'Responsable du site',
+          lines: [
+            'Georg Martin — Illustration',
+            'Oranienstraße 00, 10999 Berlin, Allemagne',
+            'studio@georgmartin.example',
+            '+49 30 0000 0000',
+          ],
+        },
+        {
+          heading: 'Responsable du contenu',
+          lines: ['Georg Martin, à l’adresse ci-dessus (§ 18 (2) MStV).'],
+        },
+        {
+          heading: 'TVA',
+          lines: ['Numéro d’identification TVA selon le § 27 a UStG : DE000000000.'],
+        },
+        {
+          heading: 'Responsabilité des liens',
+          lines: [
+            'Ce site renvoie vers des pages externes dont le contenu échappe à mon contrôle. La responsabilité de ce contenu incombe à l’exploitant de la page concernée. Les liens sont vérifiés lors de leur ajout et retirés dès qu’une infraction est connue.',
+          ],
+        },
+        {
+          heading: 'Droits d’auteur',
+          lines: [
+            'Tous les dessins, photographies et textes de ce site sont l’œuvre de Georg Martin, sauf mention contraire. Toute reproduction, diffusion ou utilisation requiert une autorisation écrite.',
+          ],
+        },
+        {
+          heading: 'Règlement des litiges',
+          lines: [
+            'Je ne suis ni tenu ni disposé à participer à une procédure de règlement des litiges devant une commission d’arbitrage de la consommation.',
+          ],
+        },
+      ],
+    },
+    privacy: {
+      title: 'Politique de confidentialité',
+      intro: 'Ce site ne collecte aucune donnée vous concernant. Rien ici ne vous suit, ne vous profile ni ne vous piste ailleurs.',
+      blocks: [
+        {
+          heading: 'Ni analytique, ni cookies, ni pistage',
+          lines: [
+            'Aucun outil d’analytique, aucun gestionnaire de balises, aucun pixel publicitaire et aucun script de pistage sur ce site. Aucun cookie n’est déposé et rien n’est écrit dans le stockage de votre navigateur.',
+          ],
+        },
+        {
+          heading: 'Aucune requête vers des tiers',
+          lines: [
+            'Les polices et les images sont servies par ce site lui-même : ouvrir une page n’informe donc aucune autre société de votre passage. Aucun contenu n’est intégré depuis un réseau social ou une plateforme vidéo.',
+          ],
+        },
+        {
+          heading: 'Journaux du serveur',
+          lines: [
+            'L’hébergeur peut conserver de brefs journaux techniques — adresse IP, horodatage, fichier demandé — à seule fin d’exploiter et de sécuriser le serveur. Ils ne sont reliés ici à personne et ne servent à rien d’autre.',
+          ],
+        },
+        {
+          heading: 'Formulaire de contact et e-mail',
+          lines: [
+            'Si vous m’écrivez via le formulaire ou par e-mail, je n’utilise votre message que pour vous répondre. Il n’est ajouté à aucune liste, transmis à personne et utilisé à aucune autre fin ; je le supprime une fois l’échange terminé.',
+          ],
+        },
+        {
+          heading: 'Vos droits',
+          lines: [
+            'Aucune donnée personnelle n’étant collectée ici, il n’y a normalement rien à demander, rectifier ou effacer. Si vous m’avez écrit, vous pouvez à tout moment me demander ce que je conserve encore et exiger sa suppression : studio@georgmartin.example.',
+          ],
+        },
+      ],
+    },
   },
 }
 
