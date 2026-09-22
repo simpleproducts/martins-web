@@ -21,9 +21,6 @@ const es: Dictionary = {
     eyebrow: 'Ilustración de moda · Berlín',
     lede:
       'Tinta, gouache y un trazo terco de bermellón. Dibujos hechos para la media décima de segundo antes de que la prenda se mueva.',
-    primaryCta: 'Ver la obra',
-    secondaryCta: 'Encargar una pieza',
-    scroll: 'Desliza',
     since: 'En activo desde 2012',
   },
   about: {
@@ -41,12 +38,11 @@ const es: Dictionary = {
       { label: 'Clientes seleccionados', value: 'Maison Verre, Atelier Noir, Kunsthalle Süd' },
       { label: 'Exposiciones', value: 'París, Lisboa, Viena — 2021 / 2023 / 2025' },
     ],
-    quote: 'No dibujo el vestido. Dibujo el segundo en que deja de moverse.',
   },
   works: {
     label: 'Obra seleccionada',
     heading: 'Piezas recientes',
-    lede: 'Cinco dibujos de las dos últimas temporadas. Desliza para recorrerlos.',
+    lede: 'Cinco dibujos de las dos últimas temporadas. Recorre la pila.',
     pieces: [
       {
         title: 'Estudio carmesí I',
@@ -86,15 +82,21 @@ const es: Dictionary = {
     ],
     piece: 'Pieza',
     of: 'de',
+    prev: 'Pieza anterior',
+    next: 'Pieza siguiente',
   },
   contact: {
     label: 'Contacto',
     heading: 'Hagamos algo que merezca un marco.',
     lede:
       'Encargos, trabajos editoriales, dibujo en directo y consultas sobre impresión. Suelo responder en dos días laborables.',
-    directLabel: 'O escribe directamente',
     studioLabel: 'Estudio',
     studioValue: 'Oranienstraße 00, 10999 Berlín',
+    emailLabel: 'Correo',
+    phoneLabel: 'Teléfono',
+    messageLabel: 'Mensaje',
+    messageCta: 'Escribir un mensaje',
+    closeForm: 'Cerrar',
     socialsLabel: 'En otros sitios',
     form: {
       name: 'Tu nombre',

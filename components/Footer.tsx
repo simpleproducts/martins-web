@@ -29,6 +29,10 @@ export default function Footer({ locale, dict }: { locale: Locale; dict: Diction
             <p className="mt-6 max-w-[32ch] text-sm leading-relaxed font-light text-paper-light/60">
               {dict.footer.tagline}
             </p>
+            <p className="mt-6 text-sm leading-relaxed font-light text-paper-light/60">
+              <span className="eyebrow block text-paper-light/55">{dict.contact.studioLabel}</span>
+              <span className="mt-2 block">{dict.contact.studioValue}</span>
+            </p>
           </div>
 
           <nav aria-label="Footer" className="col-span-6 lg:col-span-3">

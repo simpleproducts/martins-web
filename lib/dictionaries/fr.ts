@@ -21,9 +21,6 @@ const fr: Dictionary = {
     eyebrow: 'Illustration de mode · Berlin',
     lede:
       'Encre, gouache et un trait têtu de vermillon. Des dessins faits pour la demi-seconde avant que le vêtement ne bouge.',
-    primaryCta: 'Voir les œuvres',
-    secondaryCta: 'Commander une pièce',
-    scroll: 'Faites défiler',
     since: 'En activité depuis 2012',
   },
   about: {
@@ -41,12 +38,11 @@ const fr: Dictionary = {
       { label: 'Clients choisis', value: 'Maison Verre, Atelier Noir, Kunsthalle Süd' },
       { label: 'Expositions', value: 'Paris, Lisbonne, Vienne — 2021 / 2023 / 2025' },
     ],
-    quote: 'Je ne dessine pas la robe. Je dessine la seconde où elle s’arrête.',
   },
   works: {
     label: 'Œuvres choisies',
     heading: 'Pièces récentes',
-    lede: 'Cinq dessins des deux dernières saisons. Faites défiler pour les parcourir.',
+    lede: 'Cinq dessins des deux dernières saisons. Parcourez la pile.',
     pieces: [
       {
         title: 'Étude cramoisie I',
@@ -86,15 +82,21 @@ const fr: Dictionary = {
     ],
     piece: 'Pièce',
     of: 'sur',
+    prev: 'Pièce précédente',
+    next: 'Pièce suivante',
   },
   contact: {
     label: 'Contact',
     heading: 'Faisons quelque chose qui mérite un cadre.',
     lede:
       'Commandes, missions éditoriales, dessin en direct et demandes de tirages. Réponse généralement sous deux jours ouvrés.',
-    directLabel: 'Ou écrivez directement',
     studioLabel: 'Atelier',
     studioValue: 'Oranienstraße 00, 10999 Berlin',
+    emailLabel: 'E-mail',
+    phoneLabel: 'Téléphone',
+    messageLabel: 'Message',
+    messageCta: 'Écrire un message',
+    closeForm: 'Fermer',
     socialsLabel: 'Ailleurs',
     form: {
       name: 'Votre nom',

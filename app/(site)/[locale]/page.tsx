@@ -35,7 +35,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       />
       <Header locale={locale} dict={dict} />
       <main id="main">
-        <Hero locale={locale} dict={dict} />
+        <Hero dict={dict} />
         <About dict={dict} />
         <Works dict={dict} />
         <Contact dict={dict} />

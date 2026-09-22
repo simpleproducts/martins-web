@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import Signature from '@/components/Signature'
 import { reveal } from '@/lib/reveal'
 import type { Dictionary } from '@/lib/i18n'
 import { PORTRAIT, SITE } from '@/lib/site'
@@ -78,29 +77,6 @@ export default function About({ dict }: { dict: Dictionary }) {
             </dl>
           </div>
         </div>
-
-        {/* Pull quote */}
-        <figure
-          data-reveal
-          style={reveal(60)}
-          className="relative mt-24 grid grid-cols-12 lg:mt-36"
-        >
-          <blockquote className="col-span-12 lg:col-span-10 lg:col-start-2">
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute -top-[0.3em] left-0 font-display text-[clamp(7rem,18vw,16rem)] leading-none font-light text-vermilion/15 select-none lg:left-[-0.1em]"
-            >
-              &ldquo;
-            </span>
-            <p className="text-balance-pretty relative font-display text-[clamp(1.5rem,3.6vw,2.9rem)] leading-[1.2] font-extralight tracking-[-0.02em]">
-              {dict.about.quote}
-            </p>
-          </blockquote>
-          <figcaption className="col-span-12 mt-10 flex items-center gap-5 lg:col-span-10 lg:col-start-2">
-            <Signature className="h-9 w-36 text-ink-soft" />
-            <span className="eyebrow text-ink-faint">{SITE.name}</span>
-          </figcaption>
-        </figure>
       </div>
     </section>
   )

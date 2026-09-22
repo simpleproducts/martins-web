@@ -21,9 +21,6 @@ const de: Dictionary = {
     eyebrow: 'Modeillustration · Berlin',
     lede:
       'Tusche, Gouache und ein sturer Strich Zinnoberrot. Zeichnungen für die halbe Sekunde, bevor sich der Stoff bewegt.',
-    primaryCta: 'Arbeiten ansehen',
-    secondaryCta: 'Arbeit beauftragen',
-    scroll: 'Scrollen',
     since: 'Tätig seit 2012',
   },
   about: {
@@ -41,12 +38,11 @@ const de: Dictionary = {
       { label: 'Ausgewählte Kunden', value: 'Maison Verre, Atelier Noir, Kunsthalle Süd' },
       { label: 'Ausstellungen', value: 'Paris, Lissabon, Wien — 2021 / 2023 / 2025' },
     ],
-    quote: 'Ich zeichne nicht das Kleid. Ich zeichne die Sekunde, in der es stehen bleibt.',
   },
   works: {
     label: 'Ausgewählte Arbeiten',
     heading: 'Neue Arbeiten',
-    lede: 'Fünf Zeichnungen aus den letzten zwei Saisons. Zum Durchsehen scrollen.',
+    lede: 'Fünf Zeichnungen aus den letzten zwei Saisons. Blättern Sie durch den Stapel.',
     pieces: [
       {
         title: 'Karmesinstudie I',
@@ -86,15 +82,21 @@ const de: Dictionary = {
     ],
     piece: 'Arbeit',
     of: 'von',
+    prev: 'Vorherige Arbeit',
+    next: 'Nächste Arbeit',
   },
   contact: {
     label: 'Kontakt',
     heading: 'Machen wir etwas, das einen Rahmen verdient.',
     lede:
       'Aufträge, Editorial-Arbeiten, Live-Zeichnung und Druckanfragen. Antwort in der Regel innerhalb von zwei Werktagen.',
-    directLabel: 'Oder direkt schreiben',
     studioLabel: 'Atelier',
     studioValue: 'Oranienstraße 00, 10999 Berlin',
+    emailLabel: 'E-Mail',
+    phoneLabel: 'Telefon',
+    messageLabel: 'Nachricht',
+    messageCta: 'Nachricht schreiben',
+    closeForm: 'Schließen',
     socialsLabel: 'Anderswo',
     form: {
       name: 'Ihr Name',

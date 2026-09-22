@@ -282,6 +282,23 @@
     animation: scroll-pulse 2.6s var(--ease-swipe) infinite;
   }
 
+  /* Re-keyed carousel meta: a short fade-up so the text hands over with the
+     card rather than snapping. */
+  @keyframes slide-in {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 0.75rem, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .animate-slide-in {
+    animation: slide-in 0.55s var(--ease-ink) both;
+  }
+
   .text-balance-pretty {
     text-wrap: pretty;
   }

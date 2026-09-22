@@ -24,9 +24,6 @@ const en = {
     eyebrow: 'Fashion illustration · Berlin',
     lede:
       'Ink, gouache and one stubborn stroke of vermilion. Drawings made for the half-second before a garment moves.',
-    primaryCta: 'See the work',
-    secondaryCta: 'Commission a piece',
-    scroll: 'Scroll',
     since: 'Working since 2012',
   },
   about: {
@@ -44,12 +41,11 @@ const en = {
       { label: 'Selected clients', value: 'Maison Verre, Atelier Noir, Kunsthalle Süd' },
       { label: 'Exhibitions', value: 'Paris, Lisbon, Vienna — 2021 / 2023 / 2025' },
     ],
-    quote: 'I am not drawing the dress. I am drawing the second it stops moving.',
   },
   works: {
     label: 'Selected works',
     heading: 'Recent pieces',
-    lede: 'Five drawings from the last two seasons. Scroll to move through them.',
+    lede: 'Five drawings from the last two seasons. Move through the stack.',
     pieces: [
       {
         title: 'Crimson Study I',
@@ -89,15 +85,21 @@ const en = {
     ],
     piece: 'Piece',
     of: 'of',
+    prev: 'Previous piece',
+    next: 'Next piece',
   },
   contact: {
     label: 'Contact',
-    heading: 'Let us make something worth framing.',
+    heading: 'Let’s make something worth framing.',
     lede:
       'Commissions, editorial assignments, live drawing and print enquiries. Replies usually land within two working days.',
-    directLabel: 'Or write directly',
     studioLabel: 'Studio',
     studioValue: 'Oranienstraße 00, 10999 Berlin',
+    emailLabel: 'Email',
+    phoneLabel: 'Phone',
+    messageLabel: 'Message',
+    messageCta: 'Write a message',
+    closeForm: 'Close',
     socialsLabel: 'Elsewhere',
     form: {
       name: 'Your name',

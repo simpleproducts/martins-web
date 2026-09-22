@@ -1,95 +1,89 @@
+import Image from 'next/image'
 import BrushStroke from '@/components/BrushStroke'
-import ContactForm from '@/components/ContactForm'
+import ContactDialog from '@/components/ContactDialog'
 import { reveal } from '@/lib/reveal'
 import type { Dictionary } from '@/lib/i18n'
-import { SITE } from '@/lib/site'
+import { PORTRAIT, SITE } from '@/lib/site'
 
 export default function Contact({ dict }: { dict: Dictionary }) {
   return (
-    <section
-      id="contact"
-      className="relative overflow-hidden pt-24 pb-28 lg:pt-36 lg:pb-40"
-    >
+    <section id="contact" className="relative overflow-hidden pt-24 pb-28 lg:pt-36 lg:pb-40">
       <BrushStroke
         className="animate-ink-drift pointer-events-none absolute -right-[14%] top-[6%] h-[64%] w-[34vw] max-w-[22rem] rotate-[10deg] opacity-15 mix-blend-multiply lg:-right-[8%] lg:opacity-20"
         seed={23}
       />
 
-      <div className="relative mx-auto max-w-[110rem] px-gutter">
-        <div className="rule grid grid-cols-12 gap-y-8 border-t pt-8">
-          <p data-reveal style={reveal(0)} className="eyebrow col-span-12 text-ink-faint lg:col-span-3">
-            {dict.contact.label}
-          </p>
-          <h2
-            data-reveal
-            style={reveal(100)}
-            className="text-balance-pretty col-span-12 font-display text-heading font-extralight tracking-[-0.02em] lg:col-span-9"
-          >
-            {dict.contact.heading}
-          </h2>
-        </div>
+      <div className="relative mx-auto max-w-[110rem] px-gutter text-center">
+        <p data-reveal style={reveal(0)} className="eyebrow text-ink-faint">
+          {dict.contact.label}
+        </p>
 
-        <div className="mt-16 grid grid-cols-12 gap-x-8 gap-y-16 lg:mt-24">
-          {/* Direct details */}
-          <div className="col-span-12 lg:col-span-5">
-            <p
-              data-reveal
-              style={reveal(0)}
-              className="text-balance-pretty max-w-[40ch] text-lede font-light text-ink-soft"
-            >
-              {dict.contact.lede}
-            </p>
+        <p
+          data-reveal
+          style={reveal(80)}
+          className="text-balance-pretty mx-auto mt-6 max-w-[46ch] text-lede font-light text-ink-soft"
+        >
+          {dict.contact.lede}
+        </p>
 
-            <div data-reveal style={reveal(120)} className="mt-12">
-              <p className="eyebrow text-ink-faint">{dict.contact.directLabel}</p>
+        {/* Square plate, centred on the page. */}
+        <figure
+          data-reveal
+          style={reveal(160, '2.5rem')}
+          className="plate relative mx-auto mt-14 aspect-square w-full max-w-[30rem] lg:mt-20"
+        >
+          <Image
+            src={PORTRAIT.src}
+            alt={dict.meta.imageAlt}
+            fill
+            sizes="(min-width: 640px) 30rem, 92vw"
+            style={{ objectPosition: PORTRAIT.focus }}
+            className="object-cover"
+          />
+        </figure>
+
+        {/* The three channels, side by side. */}
+        <dl className="rule mx-auto mt-16 grid max-w-[64rem] grid-cols-1 gap-y-10 border-t pt-12 sm:grid-cols-3 sm:gap-x-8 lg:mt-20">
+          <div data-reveal style={reveal(0)}>
+            <dt className="eyebrow text-ink-faint">{dict.contact.emailLabel}</dt>
+            <dd className="mt-4">
               <a
                 href={`mailto:${SITE.email}`}
-                className="link-rule mt-3 block font-display text-[clamp(1.3rem,2.4vw,2rem)] font-light tracking-[-0.015em] break-all"
+                className="link-rule font-display text-[clamp(1.05rem,1.6vw,1.35rem)] font-light break-all"
               >
                 {SITE.email}
               </a>
-            </div>
-
-            <dl className="rule mt-12 grid grid-cols-1 gap-y-8 border-t pt-8 sm:grid-cols-2">
-              <div data-reveal style={reveal(160)}>
-                <dt className="eyebrow text-ink-faint">{dict.contact.studioLabel}</dt>
-                <dd className="mt-3 text-[1.0625rem] leading-relaxed font-light text-ink-soft">
-                  {dict.contact.studioValue}
-                  <br />
-                  <a href={`tel:${SITE.phone.replace(/\s/g, '')}`} className="link-rule mt-1 inline-block">
-                    {SITE.phone}
-                  </a>
-                </dd>
-              </div>
-
-              <div data-reveal style={reveal(220)}>
-                <dt className="eyebrow text-ink-faint">{dict.contact.socialsLabel}</dt>
-                <dd className="mt-3 flex flex-col items-start gap-2">
-                  {SITE.socials.map((social) => (
-                    <a
-                      key={social.label}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="link-rule text-[1.0625rem] font-light text-ink-soft"
-                    >
-                      {social.label}
-                    </a>
-                  ))}
-                </dd>
-              </div>
-            </dl>
+            </dd>
           </div>
 
-          {/* Form */}
-          <div
-            data-reveal
-            style={reveal(120, '2rem')}
-            className="col-span-12 lg:col-span-6 lg:col-start-7"
-          >
-            <ContactForm dict={dict} />
+          <div data-reveal style={reveal(90)}>
+            <dt className="eyebrow text-ink-faint">{dict.contact.phoneLabel}</dt>
+            <dd className="mt-4">
+              <a
+                href={`tel:${SITE.phone.replace(/\s/g, '')}`}
+                className="link-rule font-display text-[clamp(1.05rem,1.6vw,1.35rem)] font-light"
+              >
+                {SITE.phone}
+              </a>
+            </dd>
           </div>
-        </div>
+
+          <div data-reveal style={reveal(180)}>
+            <dt className="eyebrow text-ink-faint">{dict.contact.messageLabel}</dt>
+            <dd className="mt-4">
+              <ContactDialog dict={dict} />
+            </dd>
+          </div>
+        </dl>
+
+        {/* The closing line, beneath everything. */}
+        <h2
+          data-reveal
+          style={reveal(120)}
+          className="text-balance-pretty mx-auto mt-20 max-w-[22ch] font-display text-heading font-extralight tracking-[-0.02em] lg:mt-28"
+        >
+          {dict.contact.heading}
+        </h2>
       </div>
     </section>
   )

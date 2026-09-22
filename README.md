@@ -47,11 +47,11 @@ and the scroll-spy all derive from that one list.
 | ---- | ----- |
 | Artwork | `public/artwork/placeholder.jpg` — one image is reused for every piece. Add real scans and point `ARTWORK` / `PORTRAIT` in `lib/site.ts` at them. |
 | Copy | `lib/dictionaries/*.ts` — every string, in all four languages. |
-| Name, email, phone, address, socials | `lib/site.ts` and `contact.studioValue` in each dictionary. |
+| Name, email, phone, address, socials | `lib/site.ts` and `contact.studioValue` in each dictionary (the address shows in the footer). |
 | Production domain | `SITE.url` in `lib/site.ts` (drives canonical URLs, `hreflang` and Open Graph). |
 | Signature mark | `components/Signature.tsx` — hand-drawn placeholder; swap for a traced scan. |
 | Favicon | `public/favicon.svg` |
-| Contact form delivery | `deliver()` in `components/ContactForm.tsx` — currently a timed stub. Validation, error, sending and success states are already real. |
+| Contact form delivery | `deliver()` in `components/ContactForm.tsx` — currently a timed stub. Validation, error, sending and success states are already real. The form opens from the Message channel in Contact. |
 
 ## Design notes
 
@@ -59,10 +59,14 @@ and the scroll-spy all derive from that one list.
   printer's ink, one vermilion accent pulled from the artwork.
 - **Typeface**: Raleway (Google Fonts), loaded via `next/font` in the locale layout and used
   across its weight range — 200 at display sizes, 500 for the small-caps labels.
-- **Motion**: two small client components drive everything. `RevealObserver` releases any
-  element carrying `data-reveal` when it first enters the viewport; `ParallaxObserver` moves
-  anything carrying `data-parallax`. Both no-op under `prefers-reduced-motion`, which keeps
-  every section a server component.
+- **Motion**: two page-level client components drive the scroll work. `RevealObserver`
+  releases any element carrying `data-reveal` when it first enters the viewport;
+  `ParallaxObserver` moves anything carrying `data-parallax` (currently nothing does — it is
+  kept for future use and early-returns when it finds no nodes). Both no-op under
+  `prefers-reduced-motion`, so every section stays a server component.
+- **Interactive pieces**: only three components are client-side on their own —
+  `Header`, `WorksCarousel` (the stack carousel in Works) and `ContactDialog` (the native
+  `<dialog>` behind the Message channel, which mounts `ContactForm` on open).
 - **Texture**: `.paper-ground` / `.ink-ground` for the two grounds, `.grain` for the noise
   overlay, `.plate` for a framed artwork.
 
