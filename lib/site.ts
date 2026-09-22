@@ -75,16 +75,18 @@ export const PHOTOGRAPHY = [
 ] as const
 
 /**
- * The originals for sale, laid out as a masonry. `aspect` drives the column
- * rhythm, so vary it as the real pieces arrive; `price` is shown as written and
- * is deliberately not translated. Order here is the order in the grid, and the
- * dictionary's `services.items.originals.pieces` is matched to it by index.
+ * The originals for sale, laid out as a masonry. `w` and `h` are the piece's
+ * proportions — they set the column rhythm and, in the zoom dialog, the exact
+ * size of the frame the magnifier reads from, so keep them true to the real
+ * scan. `price` is shown as written and is deliberately not translated. Order
+ * here is the order in the grid, and the dictionary's
+ * `services.items.originals.pieces` is matched to it by index.
  */
 export const ORIGINALS = [
-  { id: 'crimson-i', src: PLACEHOLDER, focus: '50% 22%', aspect: '3 / 4', price: '€2,400' },
-  { id: 'atelier-late', src: PLACEHOLDER, focus: '38% 46%', aspect: '1 / 1', price: '€1,800' },
-  { id: 'nocturne', src: PLACEHOLDER, focus: '62% 34%', aspect: '4 / 5', price: '€3,200' },
-  { id: 'veil', src: PLACEHOLDER, focus: '44% 66%', aspect: '3 / 4', price: '€2,900' },
-  { id: 'ember', src: PLACEHOLDER, focus: '55% 12%', aspect: '1 / 1', price: '€1,500' },
-  { id: 'study-vii', src: PLACEHOLDER, focus: '48% 40%', aspect: '4 / 5', price: '€1,100' },
+  { id: 'crimson-i', src: PLACEHOLDER, focus: '50% 22%', w: 3, h: 4, price: '€2,400' },
+  { id: 'atelier-late', src: PLACEHOLDER, focus: '38% 46%', w: 1, h: 1, price: '€1,800' },
+  { id: 'nocturne', src: PLACEHOLDER, focus: '62% 34%', w: 4, h: 5, price: '€3,200' },
+  { id: 'veil', src: PLACEHOLDER, focus: '44% 66%', w: 3, h: 4, price: '€2,900' },
+  { id: 'ember', src: PLACEHOLDER, focus: '55% 12%', w: 1, h: 1, price: '€1,500' },
+  { id: 'study-vii', src: PLACEHOLDER, focus: '48% 40%', w: 4, h: 5, price: '€1,100' },
 ] as const

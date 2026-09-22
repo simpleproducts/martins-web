@@ -96,6 +96,9 @@ const en = {
     label: 'Services',
     heading: 'Ways to put me to work.',
     hint: 'Choose a service',
+    viewPiece: 'Look closer at',
+    closePiece: 'Close',
+    zoomHint: 'Move the cursor over the drawing to look closer',
     items: {
       live: {
         title: 'Live Drawing Illustration',
@@ -212,6 +215,8 @@ const en = {
     /** The section shows no heading — only these captions and the closing note. */
     label: 'Photography',
     imageAlt: 'Photograph from the studio archive',
+    prev: 'Previous photograph',
+    next: 'Next photograph',
     goTo: 'Go to photograph',
     captions: [
       'Placeholder caption — Berlin, winter, 2024',
@@ -331,6 +336,12 @@ const en = {
           heading: 'Contact form and email',
           lines: [
             'If you write to me through the form or by email, I use what you send purely to answer you. It is not added to a mailing list, not passed to anyone and not used for any other purpose, and I delete it once the conversation is finished.',
+          ],
+        },
+        {
+          heading: 'Language',
+          lines: [
+            'When you open the site without asking for a particular language, the language your browser advertises in the request is read to decide which version to show. It is used for that one decision, nothing is stored, and no cookie or other record of it is kept.',
           ],
         },
         {

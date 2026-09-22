@@ -1,8 +1,9 @@
 'use client'
 
 import Image from 'next/image'
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useState } from 'react'
 import type { Dictionary } from '@/lib/i18n'
+import { useSwipe } from '@/lib/useSwipe'
 import { STUDIO_GALLERY } from '@/lib/site'
 
 const pad = (n: number) => String(n).padStart(2, '0')
@@ -17,12 +18,16 @@ export default function HeroCarousel({ dict }: { dict: Dictionary }) {
   const t = dict.intro
   const total = STUDIO_GALLERY.length
   const [index, setIndex] = useState(0)
-  const drag = useRef({ x: 0, active: false })
 
   const go = useCallback(
     (delta: number) => setIndex((i) => (i + delta + total) % total),
     [total],
   )
+
+  const swipe = useSwipe({ onSwipe: go, follow: true })
+  // Enough give to feel like the picture is being pushed, not enough to open a
+  // hole at either end of the track.
+  const offset = Math.max(-200, Math.min(200, swipe.offset))
 
   return (
     <div
@@ -39,23 +44,14 @@ export default function HeroCarousel({ dict }: { dict: Dictionary }) {
           go(1)
         }
       }}
-      onPointerDown={(event) => {
-        drag.current = { x: event.clientX, active: true }
-      }}
-      onPointerUp={(event) => {
-        if (!drag.current.active) return
-        const travel = event.clientX - drag.current.x
-        drag.current.active = false
-        if (Math.abs(travel) > 48) go(travel < 0 ? 1 : -1)
-      }}
-      onPointerCancel={() => {
-        drag.current.active = false
-      }}
-      className="relative h-full w-full touch-pan-y overflow-hidden bg-ink-deep select-none"
+      onPointerDown={swipe.onPointerDown}
+      className="relative h-full w-full cursor-grab touch-pan-y overflow-hidden bg-ink-deep select-none active:cursor-grabbing"
     >
       <div
-        className="flex h-full w-full transition-transform duration-[900ms] ease-ink"
-        style={{ transform: `translate3d(-${index * 100}%, 0, 0)` }}
+        className={`flex h-full w-full ${
+          swipe.dragging ? '' : 'transition-transform duration-[900ms] ease-ink'
+        }`}
+        style={{ transform: `translate3d(calc(-${index * 100}% + ${offset}px), 0, 0)` }}
       >
         {STUDIO_GALLERY.map((image, i) => (
           <div
@@ -69,6 +65,7 @@ export default function HeroCarousel({ dict }: { dict: Dictionary }) {
               fill
               preload={i === 0}
               sizes="(min-width: 1024px) 50vw, 100vw"
+              draggable={false}
               style={{ objectPosition: image.focus }}
               className="object-cover"
             />

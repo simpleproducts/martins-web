@@ -1,8 +1,9 @@
 'use client'
 
 import Image from 'next/image'
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useState } from 'react'
 import type { Dictionary } from '@/lib/i18n'
+import { useSwipe } from '@/lib/useSwipe'
 import { ARTWORK } from '@/lib/site'
 
 const pad = (n: number) => String(n).padStart(2, '0')
@@ -20,12 +21,13 @@ export default function WorksCarousel({ dict }: { dict: Dictionary }) {
   const pieces = dict.works.pieces as readonly Piece[]
   const total = pieces.length
   const [index, setIndex] = useState(0)
-  const drag = useRef({ x: 0, active: false, moved: false })
 
   const go = useCallback(
     (delta: number) => setIndex((i) => (i + delta + total) % total),
     [total],
   )
+
+  const swipe = useSwipe({ onSwipe: go })
 
   /** Signed distance from the active card, taking the shorter way round. */
   const distance = (i: number) => {
@@ -45,20 +47,6 @@ export default function WorksCarousel({ dict }: { dict: Dictionary }) {
     }
   }
 
-  const onPointerDown = (event: React.PointerEvent) => {
-    drag.current = { x: event.clientX, active: true, moved: false }
-  }
-
-  const onPointerUp = (event: React.PointerEvent) => {
-    if (!drag.current.active) return
-    const travel = event.clientX - drag.current.x
-    drag.current.active = false
-    // A swipe that started on a side card would otherwise also fire that card's
-    // click, jumping twice. Mark the gesture so the click is ignored.
-    drag.current.moved = Math.abs(travel) > 48
-    if (drag.current.moved) go(travel < 0 ? 1 : -1)
-  }
-
   const active = pieces[index]
 
   return (
@@ -71,12 +59,8 @@ export default function WorksCarousel({ dict }: { dict: Dictionary }) {
           aria-label={dict.works.heading}
           tabIndex={0}
           onKeyDown={onKeyDown}
-          onPointerDown={onPointerDown}
-          onPointerUp={onPointerUp}
-          onPointerCancel={() => {
-            drag.current.active = false
-          }}
-          className="relative h-[clamp(22rem,58vh,34rem)] touch-pan-y select-none lg:h-[min(64vh,38rem)]"
+          onPointerDown={swipe.onPointerDown}
+          className="relative h-[clamp(22rem,58vh,34rem)] cursor-grab touch-pan-y select-none active:cursor-grabbing lg:h-[min(64vh,38rem)]"
         >
           {pieces.map((piece, i) => {
             const d = distance(i)
@@ -94,10 +78,9 @@ export default function WorksCarousel({ dict }: { dict: Dictionary }) {
                 aria-label={piece.title}
                 aria-current={isActive ? 'true' : undefined}
                 onClick={() => {
-                  if (drag.current.moved) {
-                    drag.current.moved = false
-                    return
-                  }
+                  // A swipe that started on a side card would otherwise fire
+                  // that card's click too, jumping twice.
+                  if (swipe.consumeDrag()) return
                   if (!isActive) setIndex(i)
                 }}
                 style={{
@@ -120,6 +103,7 @@ export default function WorksCarousel({ dict }: { dict: Dictionary }) {
                     src={ARTWORK[i % ARTWORK.length].src}
                     alt={isActive ? `${piece.title} — ${piece.medium}` : ''}
                     fill
+                    draggable={false}
                     sizes="(min-width: 1024px) 40vw, 68vw"
                     className="object-contain p-3 sm:p-4"
                   />

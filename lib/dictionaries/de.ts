@@ -93,6 +93,9 @@ const de: Dictionary = {
     label: 'Leistungen',
     heading: 'Arten, mich einzuspannen.',
     hint: 'Leistung wählen',
+    viewPiece: 'Näher ansehen',
+    closePiece: 'Schließen',
+    zoomHint: 'Den Zeiger über die Zeichnung bewegen, um näher heranzugehen',
     items: {
       live: {
         title: 'Live-Illustration',
@@ -209,6 +212,8 @@ const de: Dictionary = {
     /** Der Abschnitt zeigt keine Überschrift — nur diese Bildunterschriften und den Schlusssatz. */
     label: 'Fotografie',
     imageAlt: 'Fotografie aus dem Atelierarchiv',
+    prev: 'Vorherige Fotografie',
+    next: 'Nächste Fotografie',
     goTo: 'Zur Fotografie',
     captions: [
       'Platzhalter-Bildunterschrift — Berlin, Winter, 2024',
@@ -328,6 +333,12 @@ const de: Dictionary = {
           heading: 'Kontaktformular und E-Mail',
           lines: [
             'Wenn Sie mir über das Formular oder per E-Mail schreiben, nutze ich Ihre Angaben ausschließlich, um Ihnen zu antworten. Sie kommen auf keine Verteilerliste, werden nicht weitergegeben und für nichts anderes verwendet; nach Abschluss der Korrespondenz lösche ich sie.',
+          ],
+        },
+        {
+          heading: 'Sprache',
+          lines: [
+            'Öffnen Sie die Seite, ohne eine bestimmte Sprache zu verlangen, wird die Sprache gelesen, die Ihr Browser in der Anfrage angibt, um zu entscheiden, welche Fassung erscheint. Sie dient allein dieser Entscheidung, nichts wird gespeichert, und weder ein Cookie noch ein anderer Vermerk bleibt zurück.',
           ],
         },
         {

@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useRef, useState } from 'react'
 import { reveal } from '@/lib/reveal'
 import type { Dictionary } from '@/lib/i18n'
+import PieceZoom from '@/components/PieceZoom'
 import { ORIGINALS, SERVICES } from '@/lib/site'
 
 const pad = (n: number) => String(n).padStart(2, '0')
@@ -253,37 +254,50 @@ function EventsProcess({ dict }: { dict: Dictionary }) {
  */
 function OriginalsMasonry({ dict }: { dict: Dictionary }) {
   const pieces = dict.services.items.originals.pieces
+  const [zoomed, setZoomed] = useState<number | null>(null)
 
   return (
-    <div className="mt-10 gap-4 sm:columns-2">
-      {ORIGINALS.map((piece, i) => (
-        <figure key={piece.id} className="mb-8 break-inside-avoid">
-          <div
-            className="plate plate-inverse relative w-full"
-            style={{ aspectRatio: piece.aspect }}
-          >
-            <Image
-              src={piece.src}
-              alt={pieces[i].title}
-              fill
-              sizes="(min-width: 1024px) 23vw, (min-width: 640px) 46vw, 92vw"
-              style={{ objectPosition: piece.focus }}
-              className="object-cover"
-            />
-          </div>
+    <>
+      <div className="mt-10 gap-4 sm:columns-2">
+        {ORIGINALS.map((piece, i) => (
+          <figure key={piece.id} className="mb-8 break-inside-avoid">
+            <button
+              type="button"
+              onClick={() => setZoomed(i)}
+              aria-label={`${dict.services.viewPiece} ${pieces[i].title}`}
+              style={{ aspectRatio: `${piece.w} / ${piece.h}` }}
+              className="plate plate-inverse group/piece relative block w-full cursor-zoom-in"
+            >
+              <Image
+                src={piece.src}
+                alt={pieces[i].title}
+                fill
+                draggable={false}
+                sizes="(min-width: 1024px) 23vw, (min-width: 640px) 46vw, 92vw"
+                style={{ objectPosition: piece.focus }}
+                className="object-cover transition-transform duration-700 ease-ink group-hover/piece:scale-[1.03]"
+              />
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-ink/0 transition-colors duration-500 group-hover/piece:bg-ink/20"
+              />
+            </button>
 
-          <figcaption className="rule-inverse mt-3 flex items-baseline justify-between gap-4 border-b pb-3">
-            <span className="font-display text-[1.02rem] leading-snug font-light text-paper-light">
-              {pieces[i].title}
-            </span>
-            <span className="eyebrow shrink-0 text-vermilion-light">{piece.price}</span>
-          </figcaption>
+            <figcaption className="rule-inverse mt-3 flex items-baseline justify-between gap-4 border-b pb-3">
+              <span className="font-display text-[1.02rem] leading-snug font-light text-paper-light">
+                {pieces[i].title}
+              </span>
+              <span className="eyebrow shrink-0 text-vermilion-light">{piece.price}</span>
+            </figcaption>
 
-          <p className="mt-2 text-[0.85rem] leading-snug font-light text-paper-light/50">
-            {pieces[i].medium}
-          </p>
-        </figure>
-      ))}
-    </div>
+            <p className="mt-2 text-[0.85rem] leading-snug font-light text-paper-light/50">
+              {pieces[i].medium}
+            </p>
+          </figure>
+        ))}
+      </div>
+
+      <PieceZoom index={zoomed} dict={dict} onClose={() => setZoomed(null)} />
+    </>
   )
 }

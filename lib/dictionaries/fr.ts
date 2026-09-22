@@ -93,6 +93,9 @@ const fr: Dictionary = {
     label: 'Services',
     heading: 'Des façons de me mettre au travail.',
     hint: 'Choisissez un service',
+    viewPiece: 'Regarder de près',
+    closePiece: 'Fermer',
+    zoomHint: 'Déplacez le curseur sur le dessin pour le voir de près',
     items: {
       live: {
         title: 'Illustration en direct',
@@ -209,6 +212,8 @@ const fr: Dictionary = {
     /** La section n’affiche aucun titre : seulement ces légendes et la note finale. */
     label: 'Photographie',
     imageAlt: 'Photographie tirée des archives de l’atelier',
+    prev: 'Photographie précédente',
+    next: 'Photographie suivante',
     goTo: 'Aller à la photographie',
     captions: [
       'Légende provisoire — Berlin, hiver, 2024',
@@ -328,6 +333,12 @@ const fr: Dictionary = {
           heading: 'Formulaire de contact et e-mail',
           lines: [
             'Si vous m’écrivez via le formulaire ou par e-mail, je n’utilise votre message que pour vous répondre. Il n’est ajouté à aucune liste, transmis à personne et utilisé à aucune autre fin ; je le supprime une fois l’échange terminé.',
+          ],
+        },
+        {
+          heading: 'Langue',
+          lines: [
+            'Lorsque vous ouvrez le site sans demander une langue précise, la langue annoncée par votre navigateur dans la requête est lue pour décider quelle version afficher. Elle ne sert qu’à cette décision, rien n’est conservé, et aucun cookie ni aucune autre trace n’en est gardé.',
           ],
         },
         {

@@ -14,6 +14,23 @@ npm start       # serve the production build
 
 ## Languages
 
+A visitor who arrives without asking for a language gets the one their browser asks for.
+`proxy.ts` reads `Accept-Language` on the unprefixed paths (`/`, `/impressum`, `/privacy`)
+and sends anything it recognises to that language's prefix with a 307; English and
+anything we do not speak stay where they are. `lib/negotiateLocale.ts` does the matching —
+quality order, matched on the base tag, so `de-CH` finds German.
+
+Nothing is stored — no cookie, no browser storage, which is what the privacy page
+promises. The cost of that is memory: a choice sticks only while the visitor stays on a
+prefixed URL. To stop the negotiation from overriding someone who has just picked English
+in the switcher (which lands them back on `/`), a request that carries a same-host
+`Referer` is left alone, as are RSC and prefetch requests. Because the answer depends on
+the request's headers, those responses are sent `Vary: Accept-Language, Referer` and
+`Cache-Control: no-store`; the pages themselves stay static.
+
+If you would rather a choice be remembered across visits, that needs a preference cookie —
+and the privacy copy would have to be corrected to say so.
+
 English lives at the site root, the rest under a prefix:
 
 | Locale | URL    |
@@ -49,8 +66,8 @@ entry of its own because it shares the hero.
 | ------- | --------- | ----- |
 | Hero + introduction | `Hero.tsx` + `HeroCarousel.tsx` | One section: the name, the lede and the long "about me" writing run down the left half; the carousel owns the right half and stays pinned there while the writing scrolls. It never advances on its own. |
 | Works | `Works.tsx` + `WorksCarousel.tsx` | The stack carousel of recent pieces. |
-| Services | `Services.tsx` | A vertical tablist: clicking a title swaps the description, its photographs and its facts in place. Events carries a four-step booking walk-through (`services.items.events.process`); Original Pieces swaps the photographs for a priced masonry (`ORIGINALS` in `lib/site.ts`, titles from `services.items.originals.pieces`). |
-| Photography | `Photography.tsx` | The scroll takes over: the section is tall, the frame inside is pinned, and scrolling moves through the photographs. Each carries one small caption; the last frame is the photographer's statement rather than a picture. |
+| Services | `Services.tsx` | A vertical tablist: clicking a title swaps the description, its photographs and its facts in place. Events carries a four-step booking walk-through (`services.items.events.process`); Original Pieces swaps the photographs for a priced masonry (`ORIGINALS` in `lib/site.ts`, titles from `services.items.originals.pieces`), and each piece opens `PieceZoom.tsx` — a dialog with a magnifier that follows the cursor. |
+| Photography | `Photography.tsx` | Full-bleed frames with one small caption each; the last frame is the photographer's statement rather than a picture. The section is a third of a screen taller than the viewport and the frame inside is pinned, so scrolling past holds the pictures full screen for a moment without trapping anyone. The scroll never changes the picture — swiping, the chevrons, the hairlines and the arrow keys do. |
 | Contact | `Contact.tsx` + `ContactForm.tsx` | Square plate, two lines, the two direct channels, then the form inline. |
 
 ## Legal pages
@@ -79,7 +96,7 @@ revisited.
 | Signature mark | `components/Signature.tsx` — hand-drawn placeholder; swap for a traced scan. |
 | Favicon | `public/favicon.svg` |
 | Contact form delivery | `deliver()` in `components/ContactForm.tsx` — currently a timed stub. Validation, error, sending and success states are already real. The form sits inline at the end of the Contact section. |
-| Prices | `ORIGINALS` in `lib/site.ts`. Shown as written and never translated. |
+| Prices and proportions | `ORIGINALS` in `lib/site.ts`. Prices are shown as written and never translated; `w` / `h` must match the real scan, since the zoom dialog sizes its frame from them so the magnifier maps cursor position straight onto the artwork. |
 | Photo captions and the closing statement | `photography.captions` / `photography.statement` in each dictionary. The captions list must be the same length as `PHOTOGRAPHY`. |
 | Legal copy | `legal` in each dictionary — Impressum and privacy policy, both placeholder. The studio address now lives there rather than in the footer, and a lawyer should read both before launch. |
 
@@ -100,14 +117,26 @@ revisited.
   kept for future use and early-returns when it finds no nodes). Both no-op under
   `prefers-reduced-motion`, so every section stays a server component.
 - **Interactive pieces**: the client components are `Header`, `WorksCarousel`,
-  `HeroCarousel`, `Services`, `Photography` and `ContactForm`. Everything else stays a
-  server component.
+  `HeroCarousel`, `Services`, `PieceZoom`, `Photography` and `ContactForm`. Everything
+  else stays a server component.
+- **Swiping**: every carousel shares `lib/useSwipe.ts`. It listens for the release on the
+  window rather than on the element, so a gesture that leaves the carousel still finishes,
+  and it deliberately avoids pointer capture, which would re-target the click and break the
+  arrows and dots sitting inside the carousel. `consumeDrag()` swallows the click a drag
+  leaves behind; `follow: true` reports live travel so a track can move with the finger.
+  Carousel images carry `draggable={false}`, or the browser's own image drag eats the
+  gesture on desktop.
 - **Texture**: `.paper-ground` / `.ink-ground` for the two grounds, `.void-ground` for the
   near-black the photography slideshow sits on, `.grain` for the noise overlay, `.plate` /
   `.plate-inverse` for a framed artwork.
 
 ## Deployment
 
-Any Node host that runs `next start` (Vercel, Netlify, Render, a container). The rewrite that
-maps `/` onto the English page is the one thing a static export (`output: 'export'`) cannot
-do — if you need a purely static bundle, drop the rewrite and serve English at `/en`.
+Any Node host that runs `next start` (Vercel, Netlify, Render, a container). Two things a
+static export (`output: 'export'`) cannot do: the rewrite that maps `/` onto the English
+page, and the language negotiation in `proxy.ts`, which needs a server to read the request
+headers. For a purely static bundle, drop the rewrite, delete `proxy.ts` and serve English
+at `/en`.
+
+`proxy.ts` is the Next 16 name for what used to be `middleware.ts`; it runs on the Node
+runtime and cannot be moved to the edge runtime.

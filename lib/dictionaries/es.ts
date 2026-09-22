@@ -93,6 +93,9 @@ const es: Dictionary = {
     label: 'Servicios',
     heading: 'Maneras de ponerme a trabajar.',
     hint: 'Elige un servicio',
+    viewPiece: 'Ver de cerca',
+    closePiece: 'Cerrar',
+    zoomHint: 'Mueve el cursor sobre el dibujo para verlo de cerca',
     items: {
       live: {
         title: 'Ilustración en directo',
@@ -209,6 +212,8 @@ const es: Dictionary = {
     /** La sección no muestra título: solo estos pies de foto y la nota final. */
     label: 'Fotografía',
     imageAlt: 'Fotografía del archivo del estudio',
+    prev: 'Fotografía anterior',
+    next: 'Fotografía siguiente',
     goTo: 'Ir a la fotografía',
     captions: [
       'Pie de foto provisional — Berlín, invierno, 2024',
@@ -328,6 +333,12 @@ const es: Dictionary = {
           heading: 'Formulario de contacto y correo',
           lines: [
             'Si me escribes por el formulario o por correo, uso lo que envías únicamente para responderte. No se añade a ninguna lista, no se cede a nadie y no se usa para ningún otro fin; lo borro cuando la conversación termina.',
+          ],
+        },
+        {
+          heading: 'Idioma',
+          lines: [
+            'Cuando abres el sitio sin pedir un idioma concreto, se lee el idioma que tu navegador anuncia en la petición para decidir qué versión mostrarte. Se usa solo para esa decisión, no se guarda nada y no queda ni una cookie ni ningún otro registro.',
           ],
         },
         {

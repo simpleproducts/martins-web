@@ -1,79 +1,58 @@
 'use client'
 
 import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useState } from 'react'
 import type { Dictionary } from '@/lib/i18n'
 import { PHOTOGRAPHY, SITE } from '@/lib/site'
-
-/** How much scrolling each frame is worth, as a share of the viewport. */
-const SLIDE_SCROLL = 0.85
+import { useSwipe } from '@/lib/useSwipe'
 
 /**
- * The scroll takes over here: the section is tall, the frame inside it is
- * pinned to the viewport, and scrolling moves through the photographs instead
- * of moving the page. Each photograph carries one small line at its foot; the
- * last frame is not a photograph at all but the photographer's own words.
+ * Photographs, full width and wordless but for one line each.
+ *
+ * The section is a little taller than the viewport and the frame inside it is
+ * pinned, so scrolling past holds the pictures at full screen for a moment —
+ * long enough to stop on them on purpose, short enough that nobody scrolling
+ * to the contact details is trapped. The scroll never changes the picture:
+ * swiping, the chevrons, the hairlines and the arrow keys do. The last frame
+ * is not a photograph at all but the photographer's own words.
  */
 export default function Photography({ dict }: { dict: Dictionary }) {
   const t = dict.photography
-  const total = PHOTOGRAPHY.length + 1 // the closing statement is the last frame
-  const section = useRef<HTMLElement>(null)
+  const total = PHOTOGRAPHY.length + 1
   const [index, setIndex] = useState(0)
 
-  useEffect(() => {
-    let frame = 0
+  const go = useCallback(
+    (delta: number) => setIndex((i) => (i + delta + total) % total),
+    [total],
+  )
 
-    const measure = () => {
-      frame = 0
-      const el = section.current
-      if (!el) return
-      const travel = el.offsetHeight - window.innerHeight
-      if (travel <= 0) return
-      const progress = (window.scrollY - el.offsetTop) / travel
-      const next = Math.min(total - 1, Math.max(0, Math.floor(progress * total)))
-      setIndex((current) => (current === next ? current : next))
-    }
-
-    const onScroll = () => {
-      if (frame) return
-      frame = requestAnimationFrame(measure)
-    }
-
-    measure()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', onScroll, { passive: true })
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onScroll)
-      if (frame) cancelAnimationFrame(frame)
-    }
-  }, [total])
-
-  /** Jump the page to the scroll position that shows a given frame. */
-  const goTo = (i: number) => {
-    const el = section.current
-    if (!el) return
-    const travel = el.offsetHeight - window.innerHeight
-    window.scrollTo({ top: el.offsetTop + (travel * (i + 0.5)) / total, behavior: 'smooth' })
-  }
+  const swipe = useSwipe({ onSwipe: go })
+  const statement = index === total - 1
 
   return (
-    <section
-      ref={section}
-      id="photography"
-      aria-label={t.label}
-      aria-roledescription="carousel"
-      style={{ height: `${total * SLIDE_SCROLL * 100}svh` }}
-      className="relative"
-    >
-      <div className="void-ground sticky top-0 h-svh w-full overflow-hidden">
+    <section id="photography" aria-label={t.label} className="relative h-[132svh]">
+      <div
+        aria-roledescription="carousel"
+        tabIndex={0}
+        onKeyDown={(event) => {
+          if (event.key === 'ArrowLeft') {
+            event.preventDefault()
+            go(-1)
+          } else if (event.key === 'ArrowRight') {
+            event.preventDefault()
+            go(1)
+          }
+        }}
+        onPointerDown={swipe.onPointerDown}
+        className="void-ground group/stage sticky top-0 h-svh w-full cursor-grab touch-pan-y overflow-hidden select-none active:cursor-grabbing"
+      >
         {PHOTOGRAPHY.map((photo, i) => {
           const active = i === index
           return (
             <figure
               key={i}
               aria-hidden={active ? undefined : true}
-              className={`absolute inset-0 transition-[opacity,transform] duration-[1200ms] ease-ink ${
+              className={`absolute inset-0 transition-[opacity,transform] duration-[1100ms] ease-ink ${
                 active ? 'scale-100 opacity-100' : 'scale-[1.04] opacity-0'
               }`}
             >
@@ -81,6 +60,7 @@ export default function Photography({ dict }: { dict: Dictionary }) {
                 src={photo.src}
                 alt={active ? t.imageAlt : ''}
                 fill
+                draggable={false}
                 sizes="100vw"
                 style={{ objectPosition: photo.focus }}
                 className="object-cover"
@@ -98,9 +78,9 @@ export default function Photography({ dict }: { dict: Dictionary }) {
 
         {/* The last frame: no photograph, only the line under all of them. */}
         <div
-          aria-hidden={index === total - 1 ? undefined : true}
-          className={`absolute inset-0 flex items-center justify-center px-gutter transition-opacity duration-[1200ms] ease-ink ${
-            index === total - 1 ? 'opacity-100' : 'pointer-events-none opacity-0'
+          aria-hidden={statement ? undefined : true}
+          className={`absolute inset-0 flex items-center justify-center px-gutter transition-opacity duration-[1100ms] ease-ink ${
+            statement ? 'opacity-100' : 'pointer-events-none opacity-0'
           }`}
         >
           <blockquote className="max-w-[52rem] text-center">
@@ -112,13 +92,37 @@ export default function Photography({ dict }: { dict: Dictionary }) {
           </blockquote>
         </div>
 
+        {/* Edges: a wide invisible hit zone each side, with a chevron that only
+            surfaces on hover or focus. */}
+        <button
+          type="button"
+          onClick={() => go(-1)}
+          aria-label={t.prev}
+          className="absolute inset-y-0 left-0 z-20 flex w-[20%] items-center justify-start px-gutter text-paper-light/0 transition-colors duration-700 hover:text-paper-light/85 focus-visible:text-paper-light/85"
+        >
+          <svg viewBox="0 0 22 8" aria-hidden="true" className="h-3 w-8 rotate-180">
+            <path d="M0 4h20M16 1l4 3-4 3" fill="none" stroke="currentColor" strokeWidth="0.8" />
+          </svg>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => go(1)}
+          aria-label={t.next}
+          className="absolute inset-y-0 right-0 z-20 flex w-[20%] items-center justify-end px-gutter text-paper-light/0 transition-colors duration-700 hover:text-paper-light/85 focus-visible:text-paper-light/85"
+        >
+          <svg viewBox="0 0 22 8" aria-hidden="true" className="h-3 w-8">
+            <path d="M0 4h20M16 1l4 3-4 3" fill="none" stroke="currentColor" strokeWidth="0.8" />
+          </svg>
+        </button>
+
         {/* Hairline indicators, low on the frame. */}
         <div className="absolute inset-x-0 bottom-8 z-20 flex justify-center gap-2 lg:bottom-10 lg:gap-3">
           {Array.from({ length: total }, (_, i) => (
             <button
               key={i}
               type="button"
-              onClick={() => goTo(i)}
+              onClick={() => setIndex(i)}
               aria-label={`${t.goTo} ${i + 1}`}
               aria-current={i === index ? 'true' : undefined}
               className="group/dot px-1 py-3"
