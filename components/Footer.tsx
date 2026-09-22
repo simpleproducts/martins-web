@@ -32,7 +32,7 @@ export default function Footer({ locale, dict }: { locale: Locale; dict: Diction
           </div>
 
           <nav aria-label="Footer" className="col-span-6 lg:col-span-3">
-            <p className="eyebrow text-paper-light/40">{dict.nav.home}</p>
+            <p className="eyebrow text-paper-light/55">{dict.nav.home}</p>
             <ul className="mt-5 space-y-2.5">
               {SECTIONS.map((id) => (
                 <li key={id}>
@@ -48,7 +48,7 @@ export default function Footer({ locale, dict }: { locale: Locale; dict: Diction
           </nav>
 
           <div className="col-span-6 lg:col-span-2">
-            <p className="eyebrow text-paper-light/40">{dict.contact.socialsLabel}</p>
+            <p className="eyebrow text-paper-light/55">{dict.contact.socialsLabel}</p>
             <ul className="mt-5 space-y-2.5">
               {SITE.socials.map((social) => (
                 <li key={social.label}>
@@ -66,7 +66,7 @@ export default function Footer({ locale, dict }: { locale: Locale; dict: Diction
           </div>
 
           <div className="col-span-12 lg:col-span-2">
-            <p className="eyebrow text-paper-light/40">{dict.nav.language}</p>
+            <p className="eyebrow text-paper-light/55">{dict.nav.language}</p>
             <ul className="mt-5 space-y-2.5">
               {LOCALES.map((l) => (
                 <li key={l}>
@@ -75,7 +75,7 @@ export default function Footer({ locale, dict }: { locale: Locale; dict: Diction
                     hrefLang={l}
                     aria-current={l === locale ? 'true' : undefined}
                     className={`link-rule text-sm font-light ${
-                      l === locale ? 'text-vermilion' : 'text-paper-light/80'
+                      l === locale ? 'text-vermilion-light' : 'text-paper-light/80'
                     }`}
                   >
                     {LOCALE_META[l].name}
@@ -86,7 +86,7 @@ export default function Footer({ locale, dict }: { locale: Locale; dict: Diction
           </div>
         </div>
 
-        <div className="rule-inverse mt-16 flex flex-col gap-4 border-t pt-6 text-xs tracking-wide text-paper-light/45 sm:flex-row sm:items-center sm:justify-between">
+        <div className="rule-inverse mt-16 flex flex-col gap-4 border-t pt-6 text-xs tracking-wide text-paper-light/60 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {new Date().getFullYear()} {SITE.name}. {dict.footer.rights}
           </p>

@@ -17,6 +17,7 @@ const en = {
     contact: 'Contact',
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
+    skipToContent: 'Skip to content',
     language: 'Language',
   },
   hero: {

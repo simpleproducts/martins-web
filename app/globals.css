@@ -14,10 +14,11 @@
   --color-ink: #17130f;
   --color-ink-deep: #0c0a08;
   --color-ink-soft: #4b4138;
-  --color-ink-faint: #8b7c6a;
+  --color-ink-faint: #655747;
 
   --color-vermilion: #d4202a;
   --color-vermilion-deep: #9d1118;
+  --color-vermilion-light: #e8484f;
 
   --font-display: var(--font-raleway), 'Helvetica Neue', Arial, sans-serif;
   --font-body: var(--font-raleway), 'Helvetica Neue', Arial, sans-serif;

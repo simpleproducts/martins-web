@@ -8,10 +8,10 @@ export default function Contact({ dict }: { dict: Dictionary }) {
   return (
     <section
       id="contact"
-      className="relative scroll-mt-[var(--header-h)] overflow-hidden pt-24 pb-28 lg:pt-36 lg:pb-40"
+      className="relative overflow-hidden pt-24 pb-28 lg:pt-36 lg:pb-40"
     >
       <BrushStroke
-        className="animate-ink-drift pointer-events-none absolute -right-[6%] top-[8%] h-[70%] w-[38vw] max-w-[26rem] rotate-[8deg] opacity-25 mix-blend-multiply lg:opacity-35"
+        className="animate-ink-drift pointer-events-none absolute -right-[14%] top-[6%] h-[64%] w-[34vw] max-w-[22rem] rotate-[10deg] opacity-15 mix-blend-multiply lg:-right-[8%] lg:opacity-20"
         seed={23}
       />
 

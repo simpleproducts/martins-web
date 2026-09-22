@@ -14,6 +14,7 @@ const fr: Dictionary = {
     contact: 'Contact',
     openMenu: 'Ouvrir le menu',
     closeMenu: 'Fermer le menu',
+    skipToContent: 'Aller au contenu',
     language: 'Langue',
   },
   hero: {

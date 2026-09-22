@@ -125,7 +125,7 @@ export default function ContactForm({ dict }: { dict: Dictionary }) {
             onBlur: () => blur(field.name),
             className: [
               'w-full border-0 border-b bg-transparent pt-2 pb-3 font-light text-ink',
-              'placeholder:text-ink-faint/60 focus:outline-none',
+              'placeholder:text-ink-faint/85 focus:outline-none',
               'transition-colors duration-400',
               error
                 ? 'border-vermilion'
@@ -138,7 +138,7 @@ export default function ContactForm({ dict }: { dict: Dictionary }) {
               <label htmlFor={id} className="eyebrow flex items-baseline gap-2 text-ink-faint">
                 {field.label}
                 {field.required ? (
-                  <span aria-hidden="true" className="text-vermilion">
+                  <span aria-hidden="true" className="text-vermilion-deep">
                     *
                   </span>
                 ) : null}
@@ -161,7 +161,7 @@ export default function ContactForm({ dict }: { dict: Dictionary }) {
               )}
 
               {error ? (
-                <p id={`${id}-error`} className="mt-2 text-xs tracking-wide text-vermilion">
+                <p id={`${id}-error`} className="mt-2 text-xs tracking-wide text-vermilion-deep">
                   {error}
                 </p>
               ) : null}

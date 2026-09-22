@@ -10,7 +10,7 @@ export default function Works({ dict }: { dict: Dictionary }) {
   const total = pieces.length
 
   return (
-    <section id="works" className="ink-ground grain relative scroll-mt-0">
+    <section id="works" className="ink-ground grain relative">
       {/* Intro */}
       <div className="mx-auto max-w-[110rem] px-gutter pt-28 pb-16 lg:pt-44 lg:pb-24">
         <div className="rule-inverse grid grid-cols-12 gap-y-8 border-t pt-8">
@@ -70,14 +70,14 @@ export default function Works({ dict }: { dict: Dictionary }) {
                 data-reveal
                 style={reveal(0, '3rem')}
                 className={[
-                  'col-span-12 sm:col-span-10 sm:col-start-2 lg:col-span-7 lg:col-start-auto',
-                  flipped ? 'lg:order-2' : 'lg:order-1',
+                  'col-span-12 sm:col-span-10 sm:col-start-2 lg:col-span-7',
+                  flipped ? 'lg:order-2 lg:col-start-6' : 'lg:order-1 lg:col-start-1',
                 ].join(' ')}
               >
-                <div className="plate plate-inverse relative aspect-[4/5] w-full overflow-hidden lg:aspect-[16/11]">
+                <div className="plate plate-inverse relative aspect-[4/5] w-full overflow-hidden p-3 sm:p-5 lg:aspect-auto lg:h-[min(70vh,40rem)]">
                   <div
-                    data-parallax="0.07"
-                    className="absolute inset-[-8%]"
+                    data-parallax="0.05"
+                    className="absolute inset-3 sm:inset-5"
                     style={{ transform: 'translate3d(0, var(--parallax-y, 0px), 0)' }}
                   >
                     <Image
@@ -85,13 +85,12 @@ export default function Works({ dict }: { dict: Dictionary }) {
                       alt={`${piece.title} — ${piece.medium}`}
                       fill
                       sizes="(min-width: 1024px) 58vw, 92vw"
-                      style={{ objectPosition: art.focus }}
-                      className="object-cover"
+                      className="object-contain"
                     />
                   </div>
                   <span
                     aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-ink/40"
+                    className="rule-inverse pointer-events-none absolute inset-3 border sm:inset-5"
                   />
                 </div>
               </figure>
@@ -99,14 +98,14 @@ export default function Works({ dict }: { dict: Dictionary }) {
               {/* Meta */}
               <div
                 className={[
-                  'col-span-12 sm:col-span-10 sm:col-start-2 lg:col-span-4 lg:col-start-auto',
-                  flipped ? 'lg:order-1' : 'lg:order-2',
+                  'col-span-12 sm:col-span-10 sm:col-start-2 lg:col-span-4',
+                  flipped ? 'lg:order-1 lg:col-start-1' : 'lg:order-2 lg:col-start-9',
                 ].join(' ')}
               >
                 <p
                   data-reveal
                   style={reveal(120)}
-                  className="eyebrow flex items-center gap-4 text-vermilion"
+                  className="eyebrow flex items-center gap-4 text-vermilion-light"
                 >
                   <span aria-hidden="true" className="h-px w-8 bg-vermilion" />
                   {dict.works.piece} {pad(i + 1)} {dict.works.of} {pad(total)}

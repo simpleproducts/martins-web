@@ -19,8 +19,9 @@ export const SITE = {
 
 /**
  * Artwork placeholders. One image is reused for every piece on purpose —
- * replace `src` per piece with the real scan. `focus` shifts the crop so each
- * full-bleed panel frames a different part of the composition.
+ * replace `src` per piece with the real scan. Gallery plates letterbox the
+ * artwork rather than cropping it, so pieces of any proportion are shown whole;
+ * `focus` only steers the cropped portraits in the hero and about sections.
  */
 export const ARTWORK = [
   { id: 'crimson', src: '/artwork/placeholder.jpg', focus: '50% 22%' },

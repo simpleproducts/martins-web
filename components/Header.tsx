@@ -20,6 +20,7 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Diction
   const [menuOpen, setMenuOpen] = useState(false)
   const [langOpen, setLangOpen] = useState(false)
   const langRef = useRef<HTMLDivElement>(null)
+  const headerRef = useRef<HTMLElement>(null)
 
   const labels: Record<SectionId, string> = {
     home: dict.nav.home,
@@ -35,10 +36,7 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Diction
 
     const measure = () => {
       frame = 0
-      const headerH = parseFloat(
-        getComputedStyle(document.documentElement).getPropertyValue('--header-h'),
-      )
-      const headerPx = Number.isFinite(headerH) ? headerH * 16 : 72
+      const headerPx = headerRef.current?.offsetHeight ?? 72
 
       setScrolled(window.scrollY > 24)
 
@@ -111,17 +109,18 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Diction
     <>
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-ink focus:px-4 focus:py-2 focus:text-bone focus:no-underline"
+        className="eyebrow sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-ink focus:px-4 focus:py-3 focus:text-bone focus:no-underline"
       >
-        {dict.nav.home}
+        {dict.nav.skipToContent}
       </a>
 
       <header
+        ref={headerRef}
         className={[
           'fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,backdrop-filter,color] duration-700',
           inverse ? 'text-paper-light' : 'text-ink',
-          scrolled && !inverse ? 'bg-paper/80 shadow-[0_1px_0_0_rgba(23,19,15,0.14)] backdrop-blur-md' : '',
-          scrolled && inverse ? 'bg-ink/70 shadow-[0_1px_0_0_rgba(250,243,231,0.14)] backdrop-blur-md' : '',
+          scrolled && !inverse ? 'bg-paper/92 shadow-[0_1px_0_0_rgba(23,19,15,0.14)] backdrop-blur-md' : '',
+          scrolled && inverse ? 'bg-ink/85 shadow-[0_1px_0_0_rgba(250,243,231,0.14)] backdrop-blur-md' : '',
         ].join(' ')}
       >
         <div className="mx-auto flex h-[var(--header-h)] max-w-[110rem] items-center justify-between px-gutter">
@@ -265,7 +264,7 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Diction
                 menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0',
               ].join(' ')}
             >
-              <span className="eyebrow mr-4 align-super text-[0.55rem] text-vermilion">
+              <span className="eyebrow mr-4 align-super text-[0.55rem] text-vermilion-light">
                 0{i + 1}
               </span>
               {labels[id]}
@@ -283,7 +282,7 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Diction
               tabIndex={menuOpen ? 0 : -1}
               onClick={(e) => switchLocale(e, l)}
               className={`eyebrow transition-opacity duration-300 ${
-                l === locale ? 'text-vermilion' : 'opacity-70 hover:opacity-100'
+                l === locale ? 'text-vermilion-light' : 'opacity-70 hover:opacity-100'
               }`}
             >
               {LOCALE_META[l].short}

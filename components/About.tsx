@@ -6,7 +6,7 @@ import { PORTRAIT, SITE } from '@/lib/site'
 
 export default function About({ dict }: { dict: Dictionary }) {
   return (
-    <section id="about" className="relative scroll-mt-[var(--header-h)] py-28 lg:py-44">
+    <section id="about" className="relative py-28 lg:py-44">
       <div className="mx-auto max-w-[110rem] px-gutter">
         {/* Section head */}
         <div className="rule grid grid-cols-12 gap-y-8 border-t pt-8">
