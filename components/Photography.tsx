@@ -44,7 +44,8 @@ export default function Photography({ dict }: { dict: Dictionary }) {
           }
         }}
         onPointerDown={swipe.onPointerDown}
-        className="void-ground group/stage sticky top-0 h-svh w-full cursor-grab touch-pan-y overflow-hidden select-none active:cursor-grabbing"
+        onWheel={swipe.onWheel}
+        className="void-ground group/stage sticky top-0 h-svh w-full cursor-grab touch-pan-y overscroll-x-contain overflow-hidden select-none active:cursor-grabbing"
       >
         {PHOTOGRAPHY.map((photo, i) => {
           const active = i === index

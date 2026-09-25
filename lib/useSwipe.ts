@@ -14,6 +14,9 @@ type SwipeOptions = {
 /** Travel that marks a gesture as a drag rather than a click. */
 const SLOP = 10
 
+/** Quiet time, in ms, that ends a trackpad gesture — momentum included. */
+const WHEEL_IDLE = 180
+
 /**
  * Pointer-driven swiping, shared by every carousel.
  *
@@ -29,8 +32,41 @@ export function useSwipe({ onSwipe, threshold = 48, follow = false }: SwipeOptio
   const start = useRef<{ x: number; y: number } | null>(null)
   const dragged = useRef(false)
   const detach = useRef<(() => void) | null>(null)
+  const wheel = useRef({ travel: 0, locked: false, timer: 0 })
 
-  useEffect(() => () => detach.current?.(), [])
+  useEffect(
+    () => () => {
+      detach.current?.()
+      window.clearTimeout(wheel.current.timer)
+    },
+    [],
+  )
+
+  /**
+   * Two-finger trackpad swipes arrive as horizontal wheel events. One gesture
+   * moves one step: after it fires, everything is ignored — the momentum tail
+   * included — until the wheel has been quiet for a moment.
+   */
+  const onWheel = useCallback(
+    (event: React.WheelEvent) => {
+      const w = wheel.current
+      window.clearTimeout(w.timer)
+      w.timer = window.setTimeout(() => {
+        w.travel = 0
+        w.locked = false
+      }, WHEEL_IDLE)
+      // Mostly vertical is a page scroll, not a swipe.
+      if (w.locked || Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return
+      w.travel += event.deltaX
+      if (Math.abs(w.travel) > threshold) {
+        const direction = w.travel > 0 ? 1 : -1
+        w.travel = 0
+        w.locked = true
+        onSwipe(direction)
+      }
+    },
+    [onSwipe, threshold],
+  )
 
   const onPointerDown = useCallback(
     (event: React.PointerEvent) => {
@@ -85,5 +121,5 @@ export function useSwipe({ onSwipe, threshold = 48, follow = false }: SwipeOptio
     return moved
   }, [])
 
-  return { onPointerDown, offset, dragging, consumeDrag }
+  return { onPointerDown, onWheel, offset, dragging, consumeDrag }
 }

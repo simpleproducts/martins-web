@@ -60,7 +60,8 @@ export default function WorksCarousel({ dict }: { dict: Dictionary }) {
           tabIndex={0}
           onKeyDown={onKeyDown}
           onPointerDown={swipe.onPointerDown}
-          className="relative h-[clamp(22rem,58vh,34rem)] cursor-grab touch-pan-y select-none active:cursor-grabbing lg:h-[min(64vh,38rem)]"
+          onWheel={swipe.onWheel}
+          className="relative h-[clamp(22rem,58vh,34rem)] cursor-grab touch-pan-y overscroll-x-contain select-none active:cursor-grabbing lg:h-[min(64vh,38rem)]"
         >
           {pieces.map((piece, i) => {
             const d = distance(i)
