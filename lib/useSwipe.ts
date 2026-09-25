@@ -14,8 +14,11 @@ type SwipeOptions = {
 /** Travel that marks a gesture as a drag rather than a click. */
 const SLOP = 10
 
-/** Quiet time, in ms, that ends a trackpad gesture — momentum included. */
-const WHEEL_IDLE = 180
+/** Quiet time, in ms, that ends a trackpad gesture. */
+const WHEEL_IDLE = 150
+
+/** Time, in ms, after a trackpad swipe fires before another can start. */
+const MIN_GAP = 300
 
 /**
  * Pointer-driven swiping, shared by every carousel.
@@ -32,38 +35,58 @@ export function useSwipe({ onSwipe, threshold = 48, follow = false }: SwipeOptio
   const start = useRef<{ x: number; y: number } | null>(null)
   const dragged = useRef(false)
   const detach = useRef<(() => void) | null>(null)
-  const wheel = useRef({ travel: 0, locked: false, timer: 0 })
 
-  useEffect(
-    () => () => {
-      detach.current?.()
-      window.clearTimeout(wheel.current.timer)
-    },
-    [],
-  )
+  useEffect(() => () => detach.current?.(), [])
 
   /**
-   * Two-finger trackpad swipes arrive as horizontal wheel events. One gesture
-   * moves one step: after it fires, everything is ignored — the momentum tail
-   * included — until the wheel has been quiet for a moment.
+   * Two-finger trackpad swipes arrive as horizontal wheel events. The listener
+   * is attached natively because React's onWheel is passive: without
+   * preventDefault() the browser claims a rightward swipe as "go back".
+   *
+   * One gesture moves one step. After it fires, the momentum tail macOS sends
+   * once the fingers lift is ignored — momentum only ever slows down, so a
+   * delta that climbs back up is a fresh swipe and unlocks straight away.
    */
-  const onWheel = useCallback(
-    (event: React.WheelEvent) => {
-      const w = wheel.current
-      window.clearTimeout(w.timer)
-      w.timer = window.setTimeout(() => {
-        w.travel = 0
-        w.locked = false
-      }, WHEEL_IDLE)
-      // Mostly vertical is a page scroll, not a swipe.
-      if (w.locked || Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return
-      w.travel += event.deltaX
-      if (Math.abs(w.travel) > threshold) {
-        const direction = w.travel > 0 ? 1 : -1
-        w.travel = 0
-        w.locked = true
-        onSwipe(direction)
+  const wheelRef = useCallback(
+    (node: HTMLElement | null) => {
+      if (!node) return
+      const w = { travel: 0, locked: false, last: 0, firedAt: 0, floor: Infinity }
+
+      const onWheel = (event: WheelEvent) => {
+        const scale = event.deltaMode === 1 ? 16 : 1 // lines, from some mice
+        const dx = event.deltaX * scale
+        // Mostly vertical is a page scroll, not a swipe.
+        if (Math.abs(dx) <= Math.abs(event.deltaY * scale)) return
+        event.preventDefault()
+
+        const now = event.timeStamp
+        if (now - w.last > WHEEL_IDLE) {
+          w.travel = 0
+          w.locked = false
+        }
+        w.last = now
+
+        if (w.locked) {
+          w.floor = Math.min(w.floor, Math.abs(dx))
+          const fresh = now - w.firedAt > MIN_GAP && Math.abs(dx) > w.floor * 2 + 4
+          if (!fresh) return
+          w.locked = false
+          w.travel = 0
+        }
+
+        w.travel += dx
+        if (Math.abs(w.travel) > threshold) {
+          const direction = w.travel > 0 ? 1 : -1
+          w.travel = 0
+          w.locked = true
+          w.firedAt = now
+          w.floor = Infinity
+          onSwipe(direction)
+        }
       }
+
+      node.addEventListener('wheel', onWheel, { passive: false })
+      return () => node.removeEventListener('wheel', onWheel)
     },
     [onSwipe, threshold],
   )
@@ -121,5 +144,5 @@ export function useSwipe({ onSwipe, threshold = 48, follow = false }: SwipeOptio
     return moved
   }, [])
 
-  return { onPointerDown, onWheel, offset, dragging, consumeDrag }
+  return { onPointerDown, wheelRef, offset, dragging, consumeDrag }
 }

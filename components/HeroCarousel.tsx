@@ -45,8 +45,8 @@ export default function HeroCarousel({ dict }: { dict: Dictionary }) {
         }
       }}
       onPointerDown={swipe.onPointerDown}
-        onWheel={swipe.onWheel}
-      className="relative h-full w-full cursor-grab touch-pan-y overscroll-x-contain overflow-hidden bg-ink-deep select-none active:cursor-grabbing"
+        ref={swipe.wheelRef}
+      className="relative h-full w-full cursor-grab touch-pan-y overflow-hidden bg-ink-deep select-none active:cursor-grabbing"
     >
       <div
         className={`flex h-full w-full ${
